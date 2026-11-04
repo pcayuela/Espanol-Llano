@@ -84,9 +84,9 @@ El `.exe` tiene exactamente esa forma (el compilador compila esos tres cuerpos e
 |---|---|
 | Prólogo | `push ebp / mov ebp,esp` en `0x4CE1F4` |
 | `initialize before run` | `call 0x4B1E24`. Es la rutina de arranque vista antes: `DisableProcessWindowsGhosting`, `GetProcessHeap`, `LoadLibraryA("kernel32.dll")` y `GetProcAddress("HeapSetInformation")`. |
-| Inicializadores de globales | Unas 300 llamadas a rutinas de la biblioteca: `0x4BD29C` (la más repetida), `0x4BE290` y `0x4BED04`. |
+| Inicializadores de globales | 153 llamadas directas a rutinas de la biblioteca, sobre todo `0x4BD29C`, `0x4BE290` y `0x4BED04`. |
 | `ejecutar` | `call 0x4326FC` (en `0x4CED57`). Es una rutina corta que llama en secuencia a cinco rutinas (`0x4C7560`, `0x431FA0`, `0x42E67C`, `0x423AE8` y `0x4C57D0`). |
-| Finalizadores de globales | 17 llamadas, la mayoría a `0x4CB714`. |
+| Finalizadores de globales | 21 llamadas: 15 a `0x4CB714` y una a cada una de `0x4C88BC`, `0x4C8C54`, `0x4C8DD4`, `0x4C9AD4`, `0x4CAAB8` y `0x4CAF84`. |
 | `finalize after run` | `call 0x4A9534` (en `0x4CEE58`). |
 | `ExitProcess` | `0x4CEE65`, con el código de salida tomado de `0x41F8A8`. Ese dato vale 0. |
 
