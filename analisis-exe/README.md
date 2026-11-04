@@ -110,8 +110,8 @@ Shut down.
 
 (La primera búsqueda no la encontró porque se escribió con mayúscula inicial.) En el `.exe`, la rutina `0x4326FC` llama exactamente a cinco rutinas en ese orden: `0x4C7560` (`Start up`), `0x431FA0` (`Initialize`), `0x42E67C` (`Handle events`), `0x423AE8` (`Finalize`) y `0x4C57D0` (`Shut down`).
 
-- **`Start up`** (`To start up`, `(6) el seso`, línea 13840) inicializa en este orden: com, winsock, gdi+, talker, módulo, colores, pantalla, ventana, fuentes, cursores, ratón, lienzos, contexto y terminal. En el `.exe` las llamadas de `0x4C7560` se corresponden con ese orden. Tres quedaron verificadas por sus llamadas a la API: `CoInitializeEx` (`0x4B3CB7`) en la rutina `0x4B3CA4`, `WSAStartup` (`0x4B4F69`) en `0x4B4F40` y `GdiplusStartup` (`0x4B4374`) en `0x4B4318`.
-- **`Shut down`** (`To shut down`, línea 13139) hace lo inverso. En el `.exe` termina llamando a `0x4A98B0`, que es `Finalize winsock` (`WSACleanup`, `0x4A98B3`).
+- **`Start up`** (`To start up`, `(6) el seso`, línea 13841) inicializa en este orden: com, winsock, gdi+, talker, módulo, colores, pantalla, ventana, fuentes, cursores, ratón, lienzos, contexto y terminal. En el `.exe` las llamadas de `0x4C7560` se corresponden con ese orden. Tres quedaron verificadas por sus llamadas a la API: `CoInitializeEx` (`0x4B3CB7`) en la rutina `0x4B3CA4`, `WSAStartup` (`0x4B4F69`) en `0x4B4F40` y `GdiplusStartup` (`0x4B4374`) en `0x4B4318`.
+- **`Shut down`** (`To shut down`, línea 13134) hace lo inverso. En el `.exe` termina llamando a `0x4A98B0`, que es `Finalize winsock` (`WSACleanup`, `0x4A98B3`).
 
 ## Fuente embebida y dibujo
 
