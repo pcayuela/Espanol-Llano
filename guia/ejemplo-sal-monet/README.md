@@ -55,9 +55,37 @@ El tercero compiló sin errores y generó el ejecutable. Se ejecutó y se compro
 | **Imprimir** sin trabajos | No muestra nada (el programa «cloquea», que no se ve). |
 | **Abandonar** y CTRL-Q | El programa termina en ambos casos (se comprobó que no queda el proceso). |
 
+## Prueba con imágenes locales (la parte de internet)
+
+Como la sesión no tiene internet, se probó la búsqueda y la pintura con un **servidor local** que imita a Google. Todo está en `prueba-local/`:
+
+- `web/index.html` y tres imágenes (`atardecer.jpg`, `arbol.jpg`, `montana.jpg`). Son dibujos sencillos que generé con ImageMagick, sin contenido de terceros. La página tiene tres `<img src="http://tlocal:8000/...">`.
+- `programa/como pintar`: el mismo programa, con **una sola línea distinta**: la dirección pasa de `http://images.google.com/images?q=` a `http://tlocal:8000/?q=`.
+- `captura-pintura.png` y `captura-paginas.png`: capturas.
+
+Detalle importante: el programa solo toma las imágenes cuya dirección **empieza con `http://t`** (busca el texto `src="http://t`, como las miniaturas de Google de entonces). Por eso el servidor de prueba se llama `tlocal`, un nombre que hay que agregar al archivo `hosts` (`127.0.0.1 tlocal`).
+
+Cómo repetirlo:
+
+1. Agregar `127.0.0.1 tlocal` al archivo `hosts` (en Linux, `/etc/hosts`; en Windows, `C:\Windows\System32\drivers\etc\hosts`).
+2. Servir la carpeta `web`: `python3 -m http.server 8000 --bind 127.0.0.1 --directory web`.
+3. Compilar `programa/como pintar` junto con `el seso`, como arriba, y ejecutarlo. Escribir una palabra y presionar ENTER.
+
+Resultados (compilado con `sal-1016.exe` y ejecutado bajo Wine):
+
+| Prueba | Resultado |
+|---|---|
+| Escribir `sol` y ENTER | El servidor recibió `GET /?q=sol`, luego la imagen del atardecer. El programa la «pintó» a pinceladas, encuadrada en un cuadrado de 125 mm, sobre el fondo gris. |
+| AV PÁG | Muestra el segundo trabajo (el árbol), que se descarga y se pinta en ese momento (unos 40 s en Wine con dibujo por software). |
+| AV PÁG otra vez | Tercer trabajo (las montañas). |
+| AV PÁG en el último | No cambia (el «cloqueo»). |
+| RE PÁG | Vuelve al árbol, al instante y sin nueva descarga. |
+| INICIO y FIN | Van al primero (atardecer) y al último (montañas). |
+| Peticiones al servidor | Una sola por imagen: las pinturas terminadas no se vuelven a pedir. |
+| **Imprimir** con un trabajo cargado, y CTRL-P | El estado muestra `Impreso` y el programa sigue funcionando. No se generó ningún archivo de impresión (la sesión no tiene impresora), así que solo se sabe que la rutina terminó sin error. |
+
 ## Qué no se pudo probar
 
-- **La búsqueda de imágenes y la pintura de retratos.** Requieren internet. Además, la dirección que usa el manual (`http://images.google.com/images?q=`) es de 2018 y es probable que Google ya no devuelva páginas con el formato que el programa espera. No se verificó.
-- **Las teclas INICIO, FIN, RE PÁG y AV PÁG**, que necesitan trabajos creados.
-- **La impresión.**
+- **Google real.** La dirección del manual es de 2018 y es probable que ya no devuelva páginas con el formato que el programa espera. No se verificó.
+- **Una impresión real.** Ver la última fila de la tabla anterior.
 - **El comportamiento en Windows.** Todo se probó bajo Wine.
