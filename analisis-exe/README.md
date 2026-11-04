@@ -89,7 +89,19 @@ Los literales ausentes agrupan funciones que existen en la fuente pero que este 
 
 Esto coincide con el análisis de imports: en el `.exe` solo están `WSAStartup` y `WSACleanup` de la red, y no hay ninguna función de HTTP ni de `advapi32` (cifrado). La explicación más probable es que `el seso` funciona como biblioteca general y el compilador deja afuera el código que ningún programa alcanza. Es una hipótesis: no se verificó recompilando.
 
-Los 6 literales ausentes de `(3) el editor` y el de `(5) el compilador` no se analizaron uno por uno.
+### Los 7 literales ausentes fuera de `el seso`
+
+Se revisaron uno por uno y todos corresponden a código comentado o sin llamadores en la fuente:
+
+| Literal ausente | Dónde está | Por qué no llega al `.exe` |
+|---|---|---|
+| `Passphrase?`, `Passphrase cannot be blank.`, `Desencriptando...` | `(3) el editor`, rutina `To handle decrypt` (línea 262) | En `(1) el escritorio` la línea que despacha ese comando (692) está comentada y marcada `obsolete`, igual que las entradas de menú (864, 870). |
+| `Passphrase?`, `Passphrase cannot be blank.`, `Encriptando...` | `(3) el editor`, rutina `To handle encrypt` (línea 273) | Igual: despacho comentado en la línea 695 y entradas de menú comentadas (883, 884), marcadas `obsolete`. |
+| `Extrayendo...` | `(3) el editor`, rutinas `handle extract globals` (440), `handle extract routine headers` (458) y `handle extract types` (475) | Sus tres líneas de despacho en `(1) el escritorio` (696 a 698) están comentadas. |
+| `En el portapapeles` | `(3) el editor`, usado solo por las rutinas de arriba | Su único uso está en rutinas que no se incluyen. |
+| `flag` | `(5) el compilador`, línea 1316, rutina `To compile a literal given a rider (flag)` | Su único llamador (línea 1304) está comentado. |
+
+Como contraste, `handle extract nibble literal`, cuya línea de despacho (699) **no** está comentada, sí aparece en el `.exe` (dos veces). Esto respalda la hipótesis de que el compilador incluye solo las rutinas alcanzables desde el punto de entrada. Sigue siendo una hipótesis: no se verificó recompilando.
 
 ## Límites
 
