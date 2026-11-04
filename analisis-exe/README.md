@@ -85,7 +85,7 @@ El `.exe` tiene exactamente esa forma (el compilador compila esos tres cuerpos e
 | Prólogo | `push ebp / mov ebp,esp` en `0x4CE1F4` |
 | `initialize before run` | `call 0x4B1E24`. Es la rutina de arranque vista antes: `DisableProcessWindowsGhosting`, `GetProcessHeap`, `LoadLibraryA("kernel32.dll")` y `GetProcAddress("HeapSetInformation")`. |
 | Inicializadores de globales | 153 llamadas directas a rutinas de la biblioteca, sobre todo `0x4BD29C`, `0x4BE290` y `0x4BED04`. |
-| `ejecutar` | `call 0x4326FC` (en `0x4CED57`). Es una rutina corta que llama en secuencia a cinco rutinas (`0x4C7560`, `0x431FA0`, `0x42E67C`, `0x423AE8` y `0x4C57D0`). |
+| `ejecutar` | `call 0x4326FC` (en `0x4CED57`). Es la rutina `Para Ejecutar:` de `(1) el escritorio` (línea 2036). Ver abajo. |
 | Finalizadores de globales | 21 llamadas: 15 a `0x4CB714` y una a cada una de `0x4C88BC`, `0x4C8C54`, `0x4C8DD4`, `0x4C9AD4`, `0x4CAAB8` y `0x4CAF84`. |
 | `finalize after run` | `call 0x4A9534` (en `0x4CEE58`). |
 | `ExitProcess` | `0x4CEE65`, con el código de salida tomado de `0x41F8A8`. Ese dato vale 0. |
@@ -96,9 +96,22 @@ La rutina `0x4A9534` llama a las API de cierre en este orden: `CoUninitialize`, 
 
 Es el mismo orden en que están definidas las rutinas `To finalize ...` en `(6) el seso` (líneas 5800 a 5853): contexto, cursores, fuentes, GDI+, lienzo en memoria, lienzo de impresora, talker, ventana, winsock. Cada una del `.exe` se corresponde con una de la fuente, y las vacías de la fuente (`finalize the module`, `the mouse`, `the screen`, `the screen canvas`) no emiten llamadas a la API.
 
-### Lo que no se pudo identificar
+### La rutina `ejecutar`
 
-La rutina `ejecutar` (el programa principal) no se encontró con ese nombre, ni como `run`, en los seis archivos. En la fuente solo aparece su llamada desde el compilador (líneas 54 y 913). Para SAL el programa principal probablemente se llama de otra manera o se define en otro lugar que no se buscó. La identificación de `0x4326FC` con una rutina concreta queda pendiente, y por lo tanto no se sabe qué rutina del `.exe` hace de punto de entrada de la aplicación.
+Es `Para Ejecutar:` en `(1) el escritorio` (línea 2036), el programa principal:
+
+```
+Start up.
+Initialize.
+Handle events.
+Finalize.
+Shut down.
+```
+
+(La primera búsqueda no la encontró porque se escribió con mayúscula inicial.) En el `.exe`, la rutina `0x4326FC` llama exactamente a cinco rutinas en ese orden: `0x4C7560` (`Start up`), `0x431FA0` (`Initialize`), `0x42E67C` (`Handle events`), `0x423AE8` (`Finalize`) y `0x4C57D0` (`Shut down`).
+
+- **`Start up`** (`To start up`, `(6) el seso`, línea 13840) inicializa en este orden: com, winsock, gdi+, talker, módulo, colores, pantalla, ventana, fuentes, cursores, ratón, lienzos, contexto y terminal. En el `.exe` las llamadas de `0x4C7560` se corresponden con ese orden. Tres quedaron verificadas por sus llamadas a la API: `CoInitializeEx` (`0x4B3CB7`) en la rutina `0x4B3CA4`, `WSAStartup` (`0x4B4F69`) en `0x4B4F40` y `GdiplusStartup` (`0x4B4374`) en `0x4B4318`.
+- **`Shut down`** (`To shut down`, línea 13139) hace lo inverso. En el `.exe` termina llamando a `0x4A98B0`, que es `Finalize winsock` (`WSACleanup`, `0x4A98B3`).
 
 ## Fuente embebida y dibujo
 
@@ -141,6 +154,34 @@ Los créditos de esa fuente conviene tenerlos presentes si el repo se hace públ
 ### Otros
 
 `CoInitializeEx` (`0x4B3CB7`) y `CoCreateInstance` (`0x4B4D47`) están en `initialize com` y `initialize a talker`. `CLSIDFromString` (`0x499ACC`) está en `convert a string to a uuid`. No se analizó para qué se usa el "talker".
+
+## Red y procesos
+
+### Red
+
+- `WSAStartup` solo se llama desde `Initialize winsock`, que forma parte de `Start up`. `WSACleanup` solo se llama desde `Finalize winsock`, dentro de `Shut down`. Es decir, Winsock se abre al arrancar y se cierra al salir, y nada más lo usa.
+- Las rutinas de la fuente que sí usan sockets (`socket`, `connect`, `setsockopt`, `closesocket`, `getaddrinfo`, `inet_ntoa`) no tienen llamada en el `.exe`: no se importan esas funciones y la cadena `getaddrinfo` no aparece. Tampoco hay HTTP ni cifrado (ver *Comparación de strings*).
+- `start up the cgi` y `shut down the cgi` (que también inicializan winsock) no son alcanzables desde `Para Ejecutar`.
+- `LoadLibraryA` y `GetProcAddress` solo se usan en el arranque, para obtener `HeapSetInformation` de `kernel32.dll`. La variante que carga `ws2_32.dll` para `getaddrinfo` (`To get some addrinfo routines`, línea 6188) no está en el `.exe`.
+
+Conclusión: el código de red que contiene este ejecutable inicializa y cierra Winsock, y no abre conexiones. Está respaldado por imports, strings y el recorrido de llamadas. No se ejecutó el programa, así que no se observó su tráfico real.
+
+### Procesos
+
+El `.exe` crea procesos en un solo caso: ejecutar un programa.
+
+1. **Ejecutar lo que se compiló** (`To handle run`, `(1) el escritorio`, línea 1862): guarda todo, compila el directorio y llama a `Start the current process given the compiler's exe path`.
+2. **Ejecutar un `.exe` elegido en el administrador de archivos** (`To handle run given a node`, `(2)`, línea 706): solo si el archivo seleccionado tiene extensión `.exe`; si no, muestra «No sé cómo ejecutar ese tipo de archivo desde aquí.».
+
+Ambos usan `To start a process given a path` (`(6) el seso`, línea 13775), cuya llamada `CreateProcessA` está en `0x4C7429`:
+
+- Falla con un mensaje si ya hay un proceso en ejecución («el proceso ya se está ejecutando»).
+- Pasa como directorio de trabajo el directorio del ejecutable.
+- Usa los indicadores `67108904`, que en el `.exe` es el dato `0x04000028` (`CREATE_DEFAULT_ERROR_MODE` + `NORMAL_PRIORITY_CLASS` + `DETACHED_PROCESS`, lo mismo que dice el comentario de la fuente). No pasa argumentos de línea de comandos.
+- Crea un hilo (`CreateThread`, `0x4C7502`) que espera al proceso con `WaitForSingleObject` y tiempo infinito (`0x496A32`, rutina `To compatibly wait for a process pointer`, línea 1215).
+- `TerminateProcess` (`0x4C760C`) está en `To stop a process` (línea 13899). Solo la invoca `Stop the current process` desde `(1) el escritorio` (línea 1931) y siempre sobre el proceso que SAL mismo lanzó.
+
+No hay otras llamadas a `CreateProcessA`, no se arma ninguna línea de comandos y no se invoca `cmd` ni `powershell`.
 
 ## Rutinas de archivos
 
