@@ -141,6 +141,27 @@ Los créditos de esa fuente conviene tenerlos presentes si el repo se hace públ
 | `CreateCompatibleDC` / `CreateCompatibleBitmap` | `initialize the memory canvas` (8053) | `0x4B4395`, `0x4B4405` |
 | `GetDC` | `initialize the screen canvas` (8118) | `0x4B4CA7` |
 
+### Una rutina de dibujo, línea por línea
+
+`To draw a spot with a color` (`(6) el seso`, línea 5015) dice:
+
+```
+Convert the color to a colorref.
+Call "gdi32.dll" "SetPixelV" with the current canvas and the spot's x-coord and the spot's y-coord and the colorref.
+```
+
+En el `.exe` es la rutina de `0x4A5BB0` a `0x4A5C17`, y se corresponde con la fuente paso a paso:
+
+| Fuente | Código de máquina |
+|---|---|
+| (entrada, dos parámetros) | Prólogo `push ebp / mov ebp,esp`. Los parámetros están en `[ebp+8]` (el punto) y `[ebp+0xC]` (el color), y los dos se pasan **por referencia**. |
+| `Convert the color to a colorref` | `call 0x496E88`, con el color y la dirección de una variable local (`-4(%ebp)`) para el resultado. |
+| `the spot's x-coord` / `y-coord` | Se toma el puntero al punto (`[ebp+8]`): `x` es el campo en el desplazamiento 0 y `y`, en el 4 (`addl $0x4,-0xc(%ebp)`). |
+| `Call ... "SetPixelV" with ...` | Se apilan, de derecha a izquierda, el `colorref`, la `y`, la `x` y el lienzo actual (la variable global en `0x40242C`), y se llama a `SetPixelV` en `0x4A5C0E`. |
+| (salida) | `mov %ebp,%esp / pop %ebp / ret $8`: la rutina libera los 8 bytes de sus dos parámetros. |
+
+Es una muestra de que el compilador traduce cada oración de la fuente de forma directa, sin optimizar: cada variable pasa por la pila y el orden de las instrucciones sigue el del texto. No se revisó el resto de las rutinas de dibujo con este nivel de detalle.
+
 ### Imágenes (GDI+)
 
 - `GdiplusStartup` en `0x4B4374` (`initialize gdi+`, línea 8049) y `GdiplusShutdown` en `0x4A969B`.
