@@ -92,6 +92,13 @@ En marzo de 2026 Gerry Rzeppa avisó por correo a la lista de Plain English / Es
 
 Qué se verificó: el programa modificado **compila** con `sal-1016.exe` bajo Wine y produce el `.exe`. Qué no: no se probó contra Bing, porque no hay internet en esta sesión. Si Bing cambia su página, el filtro `src="https://t` puede dejar de coincidir. El texto de los comentarios dice todavía «reglas de imagen de Google».
 
+**Intento de probarlo con un servidor HTTPS local (sin éxito).** Se montó un servidor que imitaba a Bing (`https://bing.com/images/search?q=...` y `https://tlocal/...jpg`) y se instaló su certificado en Wine 9. El programa llegó a abrir la conexión TLS, pero Wine la rechazó antes de enviar el pedido y el programa mostró `No pude conectarme a url 'https://bing.com/images/search?q=sol'.`:
+
+- Con una autoridad propia y un certificado firmado por ella: error 12057 (`ERROR_INTERNET_SEC_CERT_REV_FAILED`). Wine 9 no sabe obtener listas de revocación (CRL) por la red, y el certificado del servidor no puede quedar sin comprobar. Servir una CRL vacía por `http` no cambió nada.
+- Con un único certificado autofirmado instalado como raíz: error 12045 (`UNTRUSTED_ROOT`).
+
+Es una limitación del entorno de prueba (Wine), no del programa: el mismo `como pintar` con `http` y un servidor local sí pinta (ver abajo). Probar la versión con Bing requiere Windows con internet, o un Wine más nuevo.
+
 La versión local de prueba (`prueba-local/programa/como pintar`) conserva `http://t` y `http://tlocal:8000/`, porque su servidor es `http`.
 
 ## Qué no se pudo probar
