@@ -13,7 +13,7 @@ El manual «Programación en Español Llano» (`documentación/instrucciones v2.
 
 ## Qué hace el programa (según el manual)
 
-Se escribe el nombre de cualquier persona, lugar o cosa en el cuadro de texto y, con ENTER, el programa le pide a Google una página de imágenes, toma las direcciones, descarga cada imagen y la «pinta» al estilo de Monet sobre un fondo de tonos de gris. Con INICIO, FIN, RE PÁG y AV PÁG se recorren las pinturas. Hay botones **Imprimir** y **Abandonar**, y atajos CTRL-P y CTRL-Q.
+Se escribe el nombre de cualquier persona, lugar o cosa en el cuadro de texto y, con ENTER, el programa le pide una página de imágenes a un buscador (Bing en esta versión; ver «Actualización de 2026»), toma las direcciones, descarga cada imagen y la «pinta» al estilo de Monet sobre un fondo de tonos de gris. Con INICIO, FIN, RE PÁG y AV PÁG se recorren las pinturas. Hay botones **Imprimir** y **Abandonar**, y atajos CTRL-P y CTRL-Q.
 
 ## Cambios necesarios respecto al listado del manual
 
@@ -47,7 +47,7 @@ El tercero compiló sin errores y generó el ejecutable. Se ejecutó y se compro
 | Arranque | Se pinta el fondo en tonos de gris. Abajo aparece `¡Hola, mundo!` en el centro, el cuadro de texto con `_` a la izquierda y los botones **Imprimir** y **Abandonar** a la derecha, como en el diseño del manual. |
 | Escribir `sol` | Aparece `sol_` y desaparece el mensaje de estado. |
 | RETROCESO y escribir `mar` | `so` + `mar` = `somar_`. |
-| ENTER | Muestra `No pude conectarme a url 'http://images.google.com/images?q=somar'.` Se armó la consulta y se intentó leer la URL; falló porque la sesión no tiene acceso a internet. |
+| ENTER | Muestra `No pude conectarme a url 'http://images.google.com/images?q=somar'.` (prueba hecha con la versión original del manual, antes de la actualización) Se armó la consulta y se intentó leer la URL; falló porque la sesión no tiene acceso a internet. |
 | ESC | Borra el texto; queda el `_`. |
 | **Imprimir** sin trabajos | No muestra nada (el programa «cloquea», que no se ve). |
 | **Abandonar** y CTRL-Q | El programa termina en ambos casos (se comprobó que no queda el proceso). |
@@ -81,8 +81,21 @@ Resultados (compilado con `sal-1016.exe` y ejecutado bajo Wine). Una primera tan
 | Peticiones al servidor | Una sola por imagen: las pinturas terminadas no se vuelven a pedir. |
 | **Imprimir** con un trabajo cargado, y CTRL-P | El estado muestra `Impreso` y el programa sigue funcionando. No se generó ningún archivo de impresión (la sesión no tiene impresora), así que solo se sabe que la rutina terminó sin error. |
 
+## Actualización de 2026: Google Images ya no sirve
+
+En marzo de 2026 Gerry Rzeppa avisó por correo a la lista de Plain English / Español / Portugués que el Cal Monet dejó de funcionar, porque Google Images ya no devuelve las imágenes como lo hacía desde hace 20 años. El arreglo propuesto son dos líneas, y están aplicadas en [`como pintar`](como%20pintar):
+
+| Dónde | Antes | Ahora |
+|---|---|---|
+| Al manejar ENTER | `Poner "http://images.google.com/images?q=" en una URL.` | `Poner "https://bing.com/images/search?q=" en una URL.` |
+| En las reglas de imagen del escáner | `... comienza con "src=""http://t", interrumpir.` | `... comienza con "src=""https://t", interrumpir.` |
+
+Qué se verificó: el programa modificado **compila** con `sal-1016.exe` bajo Wine y produce el `.exe`. Qué no: no se probó contra Bing, porque no hay internet en esta sesión. Si Bing cambia su página, el filtro `src="https://t` puede dejar de coincidir. El texto de los comentarios dice todavía «reglas de imagen de Google».
+
+La versión local de prueba (`prueba-local/programa/como pintar`) conserva `http://t` y `http://tlocal:8000/`, porque su servidor es `http`.
+
 ## Qué no se pudo probar
 
-- **Google real.** La dirección del manual es de 2018 y es probable que ya no devuelva páginas con el formato que el programa espera. No se verificó.
+- **Bing o cualquier buscador real.** La sesión no tiene internet. El cambio a Bing (abajo) se compiló, pero no se probó contra el servicio real. Además, `programa/como pintar` quedó con la versión local (`http://t`), que no se modificó.
 - **Una impresión real.** Ver la última fila de la tabla anterior.
 - **El comportamiento en Windows.** Todo se probó bajo Wine.

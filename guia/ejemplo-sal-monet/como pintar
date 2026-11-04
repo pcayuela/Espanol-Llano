@@ -61,7 +61,7 @@ Mostrar todo.
 Para manejar un evento (entrar):
 Si la cadena del texto está en blanco, cloquear; salir.
 Mostrar "Trabajando ..." en el estado.
-Poner "http://images.google.com/images?q=" en una URL.
+Poner "https://bing.com/images/search?q=" en una URL.
 Convertir la cadena del texto en una consulta.
 Adjuntar la consulta a la URL.
 Leer la URL en un búfer.
@@ -245,7 +245,7 @@ Para mover un escáner (reglas de imagen de Google):
 Borrar la componente del escáner.
 Lazo.
 Si la fuente del escáner está en blanco, salir.
-Si la fuente del escáner comienza con "src=""http://t", interrumpir.
+Si la fuente del escáner comienza con "src=""https://t", interrumpir.
 Agregar 1 en la primera de la fuente del escáner.
 Repetir.
 Agregar 5 en la primera de la fuente del escáner.
