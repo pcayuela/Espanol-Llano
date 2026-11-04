@@ -67,6 +67,48 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 - No hay URLs, direcciones IP ni dominios incrustados en los strings. Tampoco claves de registro ni referencias a `cmd` o `powershell`.
 - Lo que importa y lo que llama corresponde a lo que describe el manual (entorno gráfico, editor, archivos, impresión, portapapeles y compilador).
 
+## Fuente embebida y dibujo
+
+### La fuente `osmosian`
+
+- En `(6) el seso`, línea 9998, la fuente está escrita como una cadena hexadecimal (`The osmosian font source is a hex string equal to $00010000...`): 71.624 dígitos hexadecimales, es decir **35.812 bytes**.
+- Esos 35.812 bytes aparecen **idénticos** en el `.exe`, en `0x403AD0` (sección `data`).
+- Es una fuente TrueType (`sfnt` `0x00010000`) con 11 tablas (`OS/2`, `cmap`, `gasp`, `glyf`, `head`, `hhea`, `hmtx`, `loca`, `maxp`, `name`, `post`), 237 glifos y 2048 unidades por em.
+- Su tabla `name` dice: «Osmosian Sloppy © 2005 Relational Systems Corporation 2005. All Rights Reserved.» (versión 1.00, 6 de noviembre de 2005) y, en otra entrada, «Osmosian © 2006 The Osmosian Order. All Rights Reserved.» (versión 3.00). El nombre de familia es `osmosian`.
+- La rutina `To initialize the fonts` (línea 8039) la registra llamando a `AddFontMemResourceEx` con la dirección y el largo de esos bytes. En el `.exe` esa llamada está en `0x4B42AE`, y `RemoveFontMemResourceEx` (en `To finalize the fonts`, línea 5814) en `0x4A9683`. La fuente se carga desde memoria: no se instala en el sistema ni se escribe a disco. Quedará disponible para el proceso mientras dure.
+
+Los créditos de esa fuente conviene tenerlos presentes si el repo se hace público: figura una atribución a Relational Systems Corporation en la entrada de 2005.
+
+### Texto y dibujo (GDI)
+
+| Función de Windows | Rutina en la fuente | En el `.exe` |
+|---|---|---|
+| `CreateFontA` | `convert a font to an hfont` (1362) | `0x4974FD` |
+| `TextOutA` | `draw a string at a spot with a color and a font` (5080) | `0x4A5EA9` |
+| `GetTextExtentPoint32A` | `get a width given a byte/string and a canvas` (6694, 6708) | `0x4AE201`, `0x4AE3A4` |
+| `GetTextMetricsA`, `GetOutlineTextMetricsA` | `get an offset pair ...`, `get an outlinetextmetric given a font` (6464 a 6471) | `0x4ACD1F`, `0x4ACDF8`, `0x4ACE31` |
+| `GetCharABCWidthsA` | `create some font widths ...`, `get an abca and an abcc ...` | `0x49B658`, `0x4AB443`, `0x4AB4E0`, `0x4AB5D0` |
+| `GetFontData` | `put the actual data of a font into a buffer` (10695) | `0x4BC408`, `0x4BC469` |
+| `SetPixelV` | `draw a line / polygon / spot with a color` (4727, 4869, 5016) | `0x4A41A4`, `0x4A4F9A`, `0x4A5C0E` |
+| `BeginPaint` / `EndPaint` | `handle any wm-paint with a window` (6870) | `0x4AEFB1`, `0x4AEFD3` |
+| `BitBlt` | `extract a picture given a box`, `refresh the screen given a box` | `0x4C08B3` |
+| `CreateCompatibleDC` / `CreateCompatibleBitmap` | `initialize the memory canvas` (8053) | `0x4B4395`, `0x4B4405` |
+| `GetDC` | `initialize the screen canvas` (8118) | `0x4B4CA7` |
+
+### Imágenes (GDI+)
+
+- `GdiplusStartup` en `0x4B4374` (`initialize gdi+`, línea 8049) y `GdiplusShutdown` en `0x4A969B`.
+- Cargar una imagen desde memoria: `CreateStreamOnHGlobal` (`0x49BB0B`) y `GdipCreateBitmapFromStream` (`0x49BB2D`), en `create a gpbitmap given a buffer` (línea 2019). Las imágenes se leen de un buffer, no de la red.
+- Edición: `GdipCloneBitmapAreaI`, `GdipImageRotateFlip` (voltear, espejar y rotar), `GdipDrawImageRectRectI`, `GdipCreateBitmapFromScan0`, `GdipBitmapLockBits` y `GdipBitmapUnlockBits`, y `GdipSetImageAttributesColorMatrix` (escala de grises).
+
+### Impresión
+
+`PrintDlgExA` (`0x4B49BB`, `initialize the printer canvas`), `StartDocA` (`0x494D40`), `StartPage` (`0x495358`), `ResetDCA` (`0x495156`), `EndPage` (`0x4A82C5`) y `EndDoc` (`0x4A6882`). Corresponden a `begin printing`, `begin a sheet`, `end a sheet` y `end printing`.
+
+### Otros
+
+`CoInitializeEx` (`0x4B3CB7`) y `CoCreateInstance` (`0x4B4D47`) están en `initialize com` y `initialize a talker`. `CLSIDFromString` (`0x499ACC`) está en `convert a string to a uuid`. No se analizó para qué se usa el "talker".
+
 ## Rutinas de archivos
 
 Se cruzaron las llamadas a la API de archivos del `.exe` con las rutinas de `(6) el seso`. El emparejamiento usa dos pistas: el compilador emite las rutinas en el orden de la fuente, y cada grupo de llamadas vecinas (por ejemplo `CreateFileA`, `GetFileSize`, `ReadFile` y `CloseHandle`) coincide con el cuerpo de una sola rutina. Es una correspondencia por orden y vecindad, no una prueba rutina por rutina.
