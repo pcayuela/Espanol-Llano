@@ -229,6 +229,10 @@ If el error de e/s is not blank, exit.
 - El `.exe` resultante se guarda en el mismo directorio y toma el nombre del directorio.
 - Para compilar y ejecutar: abrir un archivo fuente en el editor de SAL y usar `Ejecutar` (menú **E**). `Detener` (menú **D**) corta un programa que quedó en un lazo eterno.
 
+### Codificación de los archivos
+
+Los fuentes de SAL están en **ISO-8859-1** (no UTF-8) con finales de línea CRLF. Si se guarda un archivo fuente en UTF-8, SAL lo muestra con los acentos rotos (`número` aparece como `nÃºmero`). Para escribir código propio con acentos hay que guardarlo en ISO-8859-1, o evitar los acentos.
+
 ### Programa mínimo
 
 Un archivo fuente, con `el seso` en el mismo directorio:
@@ -240,6 +244,49 @@ Apagar.
 ```
 
 Compila y se ejecuta, pero no hace nada visible. Este programa se compiló con `sal-1016.exe` (bajo Wine) copiándolo junto a `el seso`: SAL informó `500 ms` de compilación y generó un ejecutable de Windows de 32 bits de 102.400 bytes, que arrancó y terminó sin mostrar nada. El manual lo desarrolla hasta un programa completo (el «Sal Monet»), añadiendo una estructura de eventos, atajos de teclado y dibujo.
+
+### Un programa de prueba que compila
+
+Este programa se compiló con SAL (junto a una copia de `el seso`) y probó varias construcciones de esta guía: subtipo, global con `igual a`, registro con `tiene`, decisor con `diga`, condicional, lazo con `interrumpir` y `repetir`, y posesivo:
+
+```
+Para ejecutar:
+Poner en marcha.
+Probar definiciones.
+Contar hasta el tope.
+Probar posesivos.
+Apagar.
+
+Un contrapunto es un número.
+
+El tope es un número igual a 10.
+
+Una tarjeta tiene un nombre y un contrapunto.
+
+Para decidir si un contrapunto es grande:
+Si el contrapunto es mayor que 5, diga sí.
+Diga no.
+
+Para probar definiciones:
+Poner 3 en un contrapunto.
+Si el contrapunto es grande, salir.
+
+Para contar hasta el tope:
+Poner 0 en un contrapunto.
+Lazo.
+Si el contrapunto es mayor que el tope, interrumpir.
+Agregar 1 al contrapunto.
+Repetir.
+
+Para probar posesivos:
+Poner "hola" en el nombre de una tarjeta.
+```
+
+Lo que enseñaron los intentos que fallaron:
+
+- **Un nombre de tipo que ya existe en `el seso` da error.** Con `Un contador es un número.` SAL respondió «Creo que he visto este tipo 'contador' en algún lugar previo; debe estar duplicado», porque `el seso` ya define `contador`. Conviene buscar el nombre en `el seso` antes de usarlo.
+- **`Crear una X` solo existe para las «cosas»** (tipos dinámicos). Con un registro simple, SAL respondió «No sé cómo 'Crear [tarjeta]'», porque nadie definió una rutina `crear` para ese tipo.
+- **Los mensajes de error aparecen en la barra superior**, en rojo, con el nombre del archivo, y se descartan con el botón «Bueno» o con ESC.
 
 ## 14. Equivalencias español – inglés
 
@@ -267,4 +314,4 @@ Compila y se ejecuta, pero no hace nada visible. Este programa se compiló con `
 - El glosario completo del manual (unas 60 páginas): el catálogo de tipos, rutinas y variables que ofrece `el seso`. Está en el PDF.
 - La gramática formal: `documentación/ebnf`.
 - El detalle de dibujo, impresión, documentos y consola.
-- Los ejemplos no se compilaron uno por uno: solo se probó el programa mínimo de la sección 13. Los demás están tomados del manual o del código fuente de SAL, y los fragmentos cortos pueden necesitar las definiciones de `el seso` para compilar.
+- Los ejemplos sueltos no se compilaron uno por uno. Se compilaron tres programas completos: el programa mínimo y la estructura de eventos del manual (`Para ejecutar` con `inicializar`, `manejar eventos`, `finalizar` y un manejador de evento), además del programa de prueba de la sección 13. Ninguno se *ejecutó* más allá de comprobar que el compilador lo aceptara y que el programa generado arrancara. Los fragmentos cortos del resto de la guía están tomados del manual o del código fuente y pueden necesitar las definiciones de `el seso` para compilar.
