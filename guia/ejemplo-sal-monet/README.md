@@ -17,7 +17,7 @@ Se escribe el nombre de cualquier persona, lugar o cosa en el cuadro de texto y,
 
 ## Cambios necesarios respecto al listado del manual
 
-El listado del manual no compila tal cual: es una versión traducida y comentada. Estos fueron los cambios, hechos de uno en uno según los errores del compilador y revisando `el seso`:
+El listado del manual no compila tal cual: es una versión traducida y comentada. Estos son los cambios. Solo dos los exigió el compilador con un error (los colores y el encabezado de `hacer un botón`, ver más abajo); el nombre del cursor y las erratas se corrigieron antes de compilar, revisando `el seso` y el contexto, así que no está demostrado que cada uno fuera imprescindible:
 
 | Manual | En `como pintar` | Motivo |
 |---|---|---|
@@ -28,9 +28,11 @@ El listado del manual no compila tal cual: es una versión traducida y comentada
 | `Para hacer que un botón tenga un punto y un nombre:` | `Para hacer un botón usando un punto y un nombre:` | El encabezado del manual no coincide con las llamadas (`Hacer el botón … usando el punto y …`). |
 | `(reponer cursor)` | `(cursor)` | El despachador llama a `manejar un evento (cursor)`. |
 | `el botón salir` | `el botón de abandonar` | Errata del manual. |
-| `exit` mezclado en rutinas en español | `salir` | Errata del manual; se unificó. |
+| `exit` mezclado en rutinas en español (rutinas de INICIO y FIN) | `salir` | Errata del manual; se unificó. |
 | `la parte inferior de la pantalla` | `la inferior de la pantalla` | Coherencia con el resto del listado. |
-| (varias frases) | se añadió `salir` donde el manual lo omitía | Errata del manual. |
+| `… el anterior del trabajo actual es nulo, cloquear.` | se añadió `; salir` | El manual omite el `salir` en la rutina de RE PÁG. |
+| `es nula` (en la rutina de AV PÁG) | `es nulo` | Concordancia con `el siguiente`. |
+| `en la derecha el texto` | `en la derecha del texto` | Errata del manual. |
 
 Se descartó un comentario del manual (`\ [saltar src=" ]`). Las demás líneas son las del manual.
 
