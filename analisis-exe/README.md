@@ -87,11 +87,11 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 Desde la raíz del repo (los scripts reciben las rutas por argumento):
 
 ```bash
-python3 -I análisis-exe/imports.py sal-1016.exe > iat.txt
+python3 -I analisis-exe/imports.py sal-1016.exe > iat.txt
 ```
 
 ```bash
-python3 -I análisis-exe/match.py sal-1016.exe "(6) el seso"
+python3 -I analisis-exe/match.py sal-1016.exe "(6) el seso"
 ```
 
 ```bash
@@ -103,5 +103,5 @@ Los desplazamientos de archivo coinciden con las direcciones relativas porque la
 Para leer el desensamblado comprimido:
 
 ```bash
-zcat análisis-exe/sal_annot.asm.gz | less
+zcat analisis-exe/sal_annot.asm.gz | less
 ```
