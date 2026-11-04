@@ -76,7 +76,7 @@ Resultados (compilado con `sal-1016.exe` y ejecutado bajo Wine):
 | Prueba | Resultado |
 |---|---|
 | Escribir `sol` y ENTER | El servidor recibió `GET /?q=sol`, luego la imagen del atardecer. El programa la «pintó» a pinceladas, encuadrada en un cuadrado de 125 mm, sobre el fondo gris. |
-| AV PÁG | Muestra el segundo trabajo (el árbol), que se descarga y se pinta en ese momento (unos 40 s en Wine con dibujo por software). |
+| AV PÁG | Muestra el segundo trabajo (el árbol), que se descarga y se pinta en ese momento (terminó dentro de los 45 s de espera; no se midió el tiempo exacto). |
 | AV PÁG otra vez | Tercer trabajo (las montañas). |
 | AV PÁG en el último | No cambia (el «cloqueo»). |
 | RE PÁG | Vuelve al árbol, al instante y sin nueva descarga. |
