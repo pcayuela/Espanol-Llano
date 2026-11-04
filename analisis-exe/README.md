@@ -155,6 +155,28 @@ Los créditos de esa fuente conviene tenerlos presentes si el repo se hace públ
 
 `CoInitializeEx` (`0x4B3CB7`) y `CoCreateInstance` (`0x4B4D47`) están en `initialize com` y `initialize a talker`. `CLSIDFromString` (`0x499ACC`) está en `convert a string to a uuid`. No se analizó para qué se usa el "talker".
 
+## Recompilación: el `.exe` se reproduce desde la fuente
+
+Se compilaron los seis archivos fuente de `main` usando el propio `sal-1016.exe` y se comparó el resultado con el original.
+
+- **Entorno:** Wine 9.0 sobre Linux, con una pantalla virtual (Xvfb) y un contenedor aislado en la nube. No se usó Windows.
+- **Procedimiento:** los seis archivos, sin extensión y sin cambios, en un directorio llamado `sal-1016`. Se abrió `sal-1016.exe` (el original, desde un directorio aparte), se navegó hasta ese directorio, se seleccionaron los seis archivos, se abrieron con ENTER y se eligió **Ejecutar** en el menú **E**. Es el procedimiento del manual («Bebé SAL»).
+- **Resultado:** apareció un `sal-1016.exe` de 847.872 bytes en el directorio, y el programa nuevo se lanzó.
+
+| | SHA-256 |
+|---|---|
+| Original | `6062457fe28683d994900459549e7b2c1ea98fc5618feef8e11dcdd64c575264` |
+| Recompilado | `6062457fe28683d994900459549e7b2c1ea98fc5618feef8e11dcdd64c575264` |
+
+`cmp` no encontró ninguna diferencia entre los dos archivos.
+
+**Qué demuestra.** Compilar estos seis archivos con SAL produce exactamente el ejecutable del repo. Por lo tanto el `.exe` corresponde a esta fuente, y no hay código en el ejecutable que la fuente no explique. Es la prueba que faltaba para lo que en las secciones anteriores quedaba como hipótesis (por ejemplo, que el compilador deja afuera las rutinas que nadie usa: el resultado reproducido es el mismo programa).
+
+**Límites.**
+- El compilador usado es el mismo `.exe` que se verifica. Si ese compilador hiciera algo extra al compilar, se reproduciría a sí mismo igual. Esta prueba confirma la coherencia entre fuente y ejecutable, no la ausencia de comportamiento malicioso. Para eso valen el análisis de imports, strings y rutinas de las secciones anteriores, que no encontraron nada de ese tipo en lo que se revisó.
+- Se ejecutó bajo Wine y no en Windows. Que dé el mismo hash indica que el compilador es determinista en ambos casos, pero no se observó el comportamiento del programa en Windows.
+- No se observó tráfico de red ni se probaron las demás funciones del programa.
+
 ## Red y procesos
 
 ### Red
