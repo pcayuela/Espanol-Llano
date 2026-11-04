@@ -67,6 +67,39 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 - No hay URLs, direcciones IP ni dominios incrustados en los strings. Tampoco claves de registro ni referencias a `cmd` o `powershell`.
 - Lo que importa y lo que llama corresponde a lo que describe el manual (entorno gráfico, editor, archivos, impresión, portapapeles y compilador).
 
+## Estructura del programa: arranque y final
+
+El punto de entrada (`0x4CE1F4`) no es una rutina escrita a mano: la genera el compilador. En `(5) el compilador` (rutina `To add and compile the initialize before run and run and finalize after run routine`, línea 49) arma el cuerpo de esa rutina como la concatenación de:
+
+1. `initialize before run.`
+2. los inicializadores de los globales,
+3. `ejecutar.`,
+4. los finalizadores de los globales,
+5. `finalize after run.`,
+6. `call "kernel32.dll" "ExitProcess" with 0.`
+
+El `.exe` tiene exactamente esa forma (el compilador compila esos tres cuerpos en `To compile the bodies of the routines`, línea 911):
+
+| Paso | En el `.exe` |
+|---|---|
+| Prólogo | `push ebp / mov ebp,esp` en `0x4CE1F4` |
+| `initialize before run` | `call 0x4B1E24`. Es la rutina de arranque vista antes: `DisableProcessWindowsGhosting`, `GetProcessHeap`, `LoadLibraryA("kernel32.dll")` y `GetProcAddress("HeapSetInformation")`. |
+| Inicializadores de globales | Unas 300 llamadas a rutinas de la biblioteca: `0x4BD29C` (la más repetida), `0x4BE290` y `0x4BED04`. |
+| `ejecutar` | `call 0x4326FC` (en `0x4CED57`). Es una rutina corta que llama en secuencia a cinco rutinas (`0x4C7560`, `0x431FA0`, `0x42E67C`, `0x423AE8` y `0x4C57D0`). |
+| Finalizadores de globales | 17 llamadas, la mayoría a `0x4CB714`. |
+| `finalize after run` | `call 0x4A9534` (en `0x4CEE58`). |
+| `ExitProcess` | `0x4CEE65`, con el código de salida tomado de `0x41F8A8`. Ese dato vale 0. |
+
+### `finalize after run`
+
+La rutina `0x4A9534` llama a las API de cierre en este orden: `CoUninitialize`, `DestroyCursor` (tres veces), `RemoveFontMemResourceEx`, `GdiplusShutdown`, `SelectObject` y `DeleteObject` y `DeleteDC` (lienzo en memoria), `GlobalFree` (impresora), `DestroyWindow` con el bucle `GetMessageA`/`TranslateMessage`/`DispatchMessageA`, y por último `WSACleanup`.
+
+Es el mismo orden en que están definidas las rutinas `To finalize ...` en `(6) el seso` (líneas 5800 a 5853): contexto, cursores, fuentes, GDI+, lienzo en memoria, lienzo de impresora, talker, ventana, winsock. Cada una del `.exe` se corresponde con una de la fuente, y las vacías de la fuente (`finalize the module`, `the mouse`, `the screen`, `the screen canvas`) no emiten llamadas a la API.
+
+### Lo que no se pudo identificar
+
+La rutina `ejecutar` (el programa principal) no se encontró con ese nombre, ni como `run`, en los seis archivos. En la fuente solo aparece su llamada desde el compilador (líneas 54 y 913). Para SAL el programa principal probablemente se llama de otra manera o se define en otro lugar que no se buscó. La identificación de `0x4326FC` con una rutina concreta queda pendiente, y por lo tanto no se sabe qué rutina del `.exe` hace de punto de entrada de la aplicación.
+
 ## Fuente embebida y dibujo
 
 ### La fuente `osmosian`
