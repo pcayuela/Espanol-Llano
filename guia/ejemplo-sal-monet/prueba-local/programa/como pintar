@@ -18,7 +18,7 @@ Si la clase del evento es "clic izquierdo", manejar el evento (clic izquierdo); 
 Si la clase del evento es "tecla abajo", manejar el evento (tecla abajo); salir.
 
 Para manejar un evento (cursor):
-Show the arrow cursor.
+Mostrar el cursor flecha.
 
 Para manejar un evento (refrescar):
 Mostrar todo.
@@ -114,10 +114,10 @@ Actualizar la pantalla.
 El fondo es una imagen.
 
 Para crear el fondo:
-Dibujar la caja de la pantalla con the white color y the white color.
+Dibujar la caja de la pantalla con el color blanco y el color blanco.
 Lazo.
 Elegir un foco en cualquier lugar en la caja de la pantalla.
-Elegir un color entre the lightest gray color y the white color.
+Elegir un color entre el color gris muy muy claro y el color blanco.
 Pintar el color en el foco.
 Si un contador supera 80000, interrumpir.
 Si el contador es divisible en 1000, actualizar la pantalla.
@@ -267,7 +267,7 @@ Elegir el punto en cualquier lugar en la caja.
 Para mezclar un color usando un punto:
 Obtener el color en el punto.
 Si el color no es muy muy claro, salir.
-Elegir el color entre the lightest gray color y the white color.
+Elegir el color entre el color gris muy muy claro y el color blanco.
 
 Para completar un trabajo:
 Si el trabajo es nulo, salir.

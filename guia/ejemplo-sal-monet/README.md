@@ -17,14 +17,11 @@ Se escribe el nombre de cualquier persona, lugar o cosa en el cuadro de texto y,
 
 ## Cambios necesarios respecto al listado del manual
 
-El listado del manual no compila tal cual: es una versión traducida y comentada. Estos son los cambios. Solo dos los exigió el compilador con un error (los colores y el encabezado de `hacer un botón`, ver más abajo); el nombre del cursor y las erratas se corrigieron antes de compilar, revisando `el seso` y el contexto, así que no está demostrado que cada uno fuera imprescindible:
+El listado del manual no compila tal cual: es una versión traducida y comentada. Estos son los cambios. Solo dos los exigió el compilador con un error (el color `gris clarísimo` y el encabezado de `hacer un botón`, ver más abajo); las erratas se corrigieron antes de compilar, revisando `el seso` y el contexto, así que no está demostrado que cada una fuera imprescindible:
 
 | Manual | En `como pintar` | Motivo |
 |---|---|---|
-| `el color blanco` | `the white color` | En `el seso`, los colores solo tienen nombre en inglés. |
-| `el color gris clarísimo` | `the lightest gray color` | Ídem. |
-| `el color gris muy muy claro` | `the lightest gray color` | Ese color no existe en `el seso`; se usó el mismo gris claro. |
-| `Mostrar el cursor flecha.` | `Show the arrow cursor.` | El cursor flecha tiene nombre solo en inglés. |
+| `el color gris clarísimo` | `el color gris muy muy claro` | `gris clarísimo` no existe. `el seso` define `gris muy muy claro` (y `el color blanco`, que se usa tal cual). |
 | `Para hacer que un botón tenga un punto y un nombre:` | `Para hacer un botón usando un punto y un nombre:` | El encabezado del manual no coincide con las llamadas (`Hacer el botón … usando el punto y …`). |
 | `(reponer cursor)` | `(cursor)` | El despachador llama a `manejar un evento (cursor)`. |
 | `el botón salir` | `el botón de abandonar` | Errata del manual. |
@@ -40,7 +37,7 @@ Se descartó un comentario del manual (`\ [saltar src=" ]`). Las demás líneas 
 
 Se compiló con `sal-1016.exe` bajo Wine (Linux, pantalla virtual), con una copia de `el seso`, en **tres intentos**. Los dos primeros fallaron con estos errores del compilador:
 
-1. `No sé cómo 'Elegir [color] entre the color gris clarísimo and [color]'`: faltaban los nombres de colores en inglés.
+1. `No sé cómo 'Elegir [color] entre the color gris clarísimo and [color]'`: el manual escribe `gris clarísimo`, un color que no existe; el correcto es `gris muy muy claro`.
 2. `No sé cómo 'Hacer [botón] from/given/with/using [punto] and [string]'`: el encabezado de `hacer un botón`.
 
 El tercero compiló sin errores y generó el ejecutable. Se ejecutó y se comprobó:
@@ -71,7 +68,7 @@ Cómo repetirlo:
 2. Servir la carpeta `web`: `python3 -m http.server 8000 --bind 127.0.0.1 --directory web`.
 3. Compilar `programa/como pintar` junto con `el seso`, como arriba, y ejecutarlo. Escribir una palabra y presionar ENTER.
 
-Resultados (compilado con `sal-1016.exe` y ejecutado bajo Wine):
+Resultados (compilado con `sal-1016.exe` y ejecutado bajo Wine). Una primera tanda se hizo con una versión que usaba nombres en inglés para los colores y el cursor, que resultaron innecesarios; después se repitió el caso principal (`sol` y ENTER) con la versión en español que está en esta carpeta, con el mismo resultado. Las teclas de página y la impresión se probaron solo con la versión anterior:
 
 | Prueba | Resultado |
 |---|---|

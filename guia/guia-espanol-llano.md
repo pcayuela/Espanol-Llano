@@ -292,7 +292,7 @@ Lo que enseñaron los intentos que fallaron:
 
 El manual desarrolla un programa gráfico completo, el **Sal Monet**. La versión final, corregida para que compile, está en `guia/ejemplo-sal-monet/` junto con el informe de la prueba: compila y se ejecuta (fondo pintado, estado, botones, cuadro de texto, teclado). Su parte de internet se probó con un servidor local: busca, descarga, «pinta» las imágenes y se navega entre ellas con AV PÁG, RE PÁG, INICIO y FIN. El listado del manual no compila tal cual; lo que hubo que cambiar está en esa carpeta. Dos cosas útiles de lo aprendido:
 
-- **Los colores y varios nombres de `el seso` existen solo en inglés** (`the white color`, `the lightest gray color`, `the arrow cursor`). Se pueden mezclar con el resto del código en español.
+- **Muchos nombres de `el seso` existen en español y en inglés** (`el color blanco` y `the white color`; `Mostrar el cursor flecha` y `Show the arrow cursor`) y se pueden mezclar con el resto del código. El manual escribe `el color gris clarísimo`, que no existe: el nombre correcto es `el color gris muy muy claro`. Ante un error «No sé cómo…», conviene buscar el nombre en `el seso`, que mezcla los dos idiomas.
 - **El encabezado de una rutina tiene que coincidir con la frase con que se la llama.** El manual define `hacer que un botón tenga un punto y un nombre` y la llama con `hacer el botón … usando el punto y …`; el compilador rechaza esa discrepancia.
 
 ## 14. Equivalencias español – inglés
