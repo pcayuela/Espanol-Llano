@@ -1,0 +1,8 @@
+# Los archivos fuente (sin extension) estan en ISO-8859-1 con finales de linea CRLF.
+# El compilador depende de esos bytes exactos: no convertir finales de linea ni codificacion.
+* -text
+
+# Binarios: tampoco se comparan como texto.
+*.exe binary
+*.pdf binary
+*.gz binary
