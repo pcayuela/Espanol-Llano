@@ -288,6 +288,13 @@ Lo que enseñaron los intentos que fallaron:
 - **`Crear una X` solo existe para las «cosas»** (tipos dinámicos). Con un registro simple, SAL respondió «No sé cómo 'Crear [tarjeta]'», porque nadie definió una rutina `crear` para ese tipo.
 - **Los mensajes de error aparecen en la barra superior**, en rojo, con el nombre del archivo, y se descartan con el botón «Bueno» o con ESC.
 
+### Un programa completo: el Sal Monet
+
+El manual desarrolla un programa gráfico completo, el **Sal Monet**. La versión final, corregida para que compile, está en `guia/ejemplo-sal-monet/` junto con el informe de la prueba: compila y se ejecuta (fondo pintado, estado, botones, cuadro de texto, teclado). El listado del manual no compila tal cual; lo que hubo que cambiar está en esa carpeta. Dos cosas útiles de lo aprendido:
+
+- **Los colores y varios nombres de `el seso` existen solo en inglés** (`the white color`, `the lightest gray color`, `the arrow cursor`). Se pueden mezclar con el resto del código en español.
+- **El encabezado de una rutina tiene que coincidir con la frase con que se la llama.** El manual define `hacer que un botón tenga un punto y un nombre` y la llama con `hacer el botón … usando el punto y …`; el compilador rechaza esa discrepancia.
+
 ## 14. Equivalencias español – inglés
 
 | Español | Inglés |
@@ -314,4 +321,5 @@ Lo que enseñaron los intentos que fallaron:
 - El glosario completo del manual (unas 60 páginas): el catálogo de tipos, rutinas y variables que ofrece `el seso`. Está en el PDF.
 - La gramática formal: `documentación/ebnf`.
 - El detalle de dibujo, impresión, documentos y consola.
+- Además de los tres programas de arriba, se compiló y se probó el **Sal Monet** completo del manual (ver `guia/ejemplo-sal-monet/`); su parte de búsqueda de imágenes por internet no se pudo probar.
 - Los ejemplos sueltos no se compilaron uno por uno. Se compilaron tres programas completos: el programa mínimo y la estructura de eventos del manual (`Para ejecutar` con `inicializar`, `manejar eventos`, `finalizar` y un manejador de evento), además del programa de prueba de la sección 13. Ninguno se *ejecutó* más allá de comprobar que el compilador lo aceptara y que el programa generado arrancara. Los fragmentos cortos del resto de la guía están tomados del manual o del código fuente y pueden necesitar las definiciones de `el seso` para compilar.
