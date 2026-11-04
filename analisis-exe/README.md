@@ -67,6 +67,39 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 - No hay URLs, direcciones IP ni dominios incrustados en los strings. Tampoco claves de registro ni referencias a `cmd` o `powershell`.
 - Lo que importa y lo que llama corresponde a lo que describe el manual (entorno gráfico, editor, archivos, impresión, portapapeles y compilador).
 
+## Rutinas de archivos
+
+Se cruzaron las llamadas a la API de archivos del `.exe` con las rutinas de `(6) el seso`. El emparejamiento usa dos pistas: el compilador emite las rutinas en el orden de la fuente, y cada grupo de llamadas vecinas (por ejemplo `CreateFileA`, `GetFileSize`, `ReadFile` y `CloseHandle`) coincide con el cuerpo de una sola rutina. Es una correspondencia por orden y vecindad, no una prueba rutina por rutina.
+
+| Operación | Rutina en `(6) el seso` | Llamada en el `.exe` |
+|---|---|---|
+| Crear directorio | `create a path in the file system (directory)` (2110) | `CreateDirectoryA` `0x49C448` |
+| Crear archivo | `create a path in the file system (file)` (2120) | `CreateFileA` `0x49C580` |
+| Leer archivo completo | `read a path into a buffer` (11803) | `CreateFileA` `0x4C0264`, `GetFileSize` `0x4C0302`, `ReadFile` `0x4C03F0` |
+| Escribir archivo | `write a buffer to a path` (16143) | `CreateFileA` `0x4C84AB`, `WriteFile` `0x4C858C` |
+| Duplicar archivo | `duplicate a path to another path in the file system (file)` (5215) | `CopyFileA` `0x4A6757` |
+| Renombrar o mover | `rename a path to another path in the file system` (12207) | `MoveFileA` `0x4C221B` |
+| Borrar archivo | `destroy a path in the file system (file)` (4248) | `DeleteFileA` `0x4A2AB0` |
+| Borrar directorio | `destroy a path in the file system (directory)` (4231) | `RemoveDirectoryA` `0x4A298E` |
+| Listar | `get an item from a path (first time)` y `(not first time)` (6426, 6412) | `FindFirstFileA` `0x4ACB27`, `FindNextFileA` `0x4AC94D`, `FindClose` `0x4AC9C1` |
+| Atributos | `decide if a path is in the file system`, `... is read-only`, `set a path to read-write mode` | `GetFileAttributesA` `0x49F674`, `0x49F704`, `0x4C55DC`; `SetFileAttributesA` `0x4C5619` |
+| Tamaño | `get a size given a path in the file system (file)` (6594) | `GetFileAttributesExA` `0x4AD944` |
+| Unidades | `get a drive kind for a path`, `get a drive name for a path` | `GetDriveTypeA` `0x4AC520`, `GetVolumeInformationA` `0x4AC70E` |
+| Directorio temporal y ruta del programa | `initialize the module` (8061) | `GetTempPathA` `0x4B4497`, `GetModuleFileNameA` `0x4B45CA` |
+
+Rutinas de la fuente que **no** tienen llamada en el `.exe` (no se incluyen): `open a file given a path`, `read a file into a buffer`, `read stdin into a buffer`, `append a buffer to a file`, `write a buffer to a file`, `write a byte to stdout` y `write a string to stdout`.
+
+### Borrado
+
+- **Archivo:** `DeleteFileA` sobre la ruta.
+- **Directorio:** primero borra de forma recursiva cada elemento del directorio (`Loop. Get an item from the path. ... Destroy the other path`) y al final llama a `RemoveDirectoryA`. Es decir, borrar un directorio elimina todo su contenido.
+- **Quién lo invoca:** en `(2) el administrador de archivos`, el manejador de la tecla Suprimir (`handle ... (key down - delete key)`, línea 452) elimina los elementos seleccionados en el sistema de archivos. Antes de borrar comprueba que el directorio no sea de solo lectura, que haya algo seleccionado y que el usuario esté seguro (`If the user is not sure, exit.`). No se revisó cómo se implementa esa confirmación.
+- **Errores:** si falla una operación, se guarda un mensaje en `el error de e/s` (por ejemplo `Error eliminando archivo '...'`) y el borrado se detiene.
+
+### Pendiente
+
+No se leyeron las rutinas de duplicar, renombrar, copiar y pegar fuera de los puntos citados, ni el código de máquina de cada rutina de archivos más allá de la comprobación de las llamadas a la API.
+
 ## Comparación de strings (fuente contra `.exe`)
 
 Se extrajeron los literales de texto de los seis archivos fuente (sin los comentarios) y se buscaron dentro del `.exe`.
