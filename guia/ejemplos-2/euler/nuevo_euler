@@ -1,0 +1,53 @@
+\Problem 1. Find the sum of all the multiples of 3 or 5 below 1000.
+ 
+The answer is a number.
+ 
+Para ejecutar:
+  Start up. \ to get all the windows stuff initialized
+  Escribir "Working..." en la consola.
+  Put the sum of all the multiples of 3 or 5 below 1000 into an answer.
+  Escribir "The answer is: " then the answer en la consola.
+  Escribir "Press ENTER to quit" en la consola.
+Manejar eventos.
+  Shut down. \ to clean up all the windows stuff
+
+Para manejar eventos: \ To handle events:
+Esperar un evento. \ Wait for an event.
+Si el evento es nulo, salir. \ If the event is nil, exit.
+Manejar el evento. \ Handle the event.
+Repetir. \ Repeat.
+
+Para manejar un evento: \ To handle an event:
+Si la clase del evento es "tecla abajo", manejar el evento (tecla abajo); salir. \ If the event's kind is "key down", handle the event (key down); exit.
+
+Para manejar un evento (tecla abajo): \ To handle an event (key down):
+Poner la tecla del evento en una tecla. \ Put the event's key into a key.
+Si la tecla es la tecla entrar, manejar el evento (entrar); salir. 
+
+Para manejar un evento (entrar): \To handle an event (enter):
+  Escribir "¡FIN!" en la consola. Abandonar. Salir.
+
+To put the sum of all the multiples of a number or another number below a tope into an answer:
+  Put the sum of all the multiples of the number below the tope into a result.
+  Put the sum of all the multiples of the other number below the tope into a second result.
+  Put the sum of all the multiples of the number times the other number below the tope into a third result.
+  Put the result plus the second result minus the third result into the answer.
+
+To put the sum of all the multiples of a number below another number into an answer:
+  Put the other number minus 1 into an aux.
+  Put the aux divided by the number into a new result.
+  Square the new result into a second result.
+  Put the new result plus the second result into a third result.
+  Put the third result times the number divided by 2 into the answer.
+  
+A tope is a number.
+
+A result is a number.
+
+An aux is a number.
+
+An answer is a number.
+
+To square a number into another number:
+  Put the number times the number into the other number.
+

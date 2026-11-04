@@ -1,0 +1,89 @@
+Para ejecutar:
+Start up.
+Do awesome stuff.
+Shut down.
+
+To draw the fireworks:
+Start fresh.
+Imagine a horizontal line 1/4 of the way up from the bottom of the work area.
+Start at the left of the horizontal line.
+Loop.
+If the user clicks on the choices, break.
+Face north. If we're above the horizontal line, face south.
+Use the dark gray pen.
+Draw a line about 1 inch long. Add the line to a figure.
+Face east.
+Draw another line about 1/2 inch long. Add the other line to the figure.
+Refresh the screen. Wait 1/30 second.
+If we're still in the work area, repeat.
+Add the work area's right-bottom to the figure.
+Add the work area's left-bottom to the figure.
+Draw small dots in shades of a single color all over the work area.
+Draw the figure with the dark gray color and the black color.
+Refresh the screen.
+
+To do awesome stuff:
+Set up the work area.
+Set up the menu area.
+Loop.
+Wait for some input.
+If the input is from Windows telling us we're done, break.
+If the input is from Windows telling us to show all our stuff, show all our stuff.
+If the input is a left click, handle the left click.
+Repeat.
+
+To show all our stuff:
+Clear the screen without refreshing it.
+Outline the work area with the gold pen.
+Outline the menu area with the gold pen.
+List the choices in the menu area using the gold pen.
+Refresh the screen.
+Draw only inside the work area from now on.
+Show the arrow cursor.
+
+To set up the work area:
+Put the screen's left plus 1/4 inch into the work area's left.
+Put the screen's top plus 1/4 inch into the work area's top.
+Put the screen's right minus 3-1/2 inches into the work area's right.
+Put the screen's bottom minus 1/4 inch into the work area's bottom.
+
+The work area is a box.
+
+To set up the menu area:
+Put the screen's right minus 3-1/4 inches into the menu area's left.
+Put the screen's top plus 1/4 inch into the menu area's top.
+Put the screen's right minus 1/4 inch into the menu area's right.
+Put the screen's bottom minus 1/4 inch into the menu area's bottom.
+Add "FIREWORKS" to the choices.
+
+The menu area is a box.
+
+To handle a left click:
+Wait for the mouse's left button to come back up.
+Find a choice given the left click's spot.
+If the choice is "FIREWORKS", draw the fireworks.
+Refresh the screen.
+
+To start fresh:
+Erase inside the work area.
+Use small pointy letters.
+Use the skinny pen.
+Use the gold color.
+Start in the middle of the work area.
+Face north.
+Center the terminal in the work area.
+Clear the terminal.
+Put the green color into the terminal's output color.
+Put the red color into the terminal's input color.
+Refresh the screen.
+
+To draw small dots in shades of a single color all over a box:
+Loop.
+Pick a color.
+Vary the color's lightness between 10 percent and 90 percent.
+Pick a spot anywhere in the box.
+Pick a point count between 4 and 12.
+Pick a brightness between 10 percent and 90 percent.
+Draw a star with the point count and 1/32 inch. 
+Draw the star with the point count and 1/16 inch.
+Add 1 to a count. If the count is less than 500, repeat.

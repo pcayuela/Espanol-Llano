@@ -1,0 +1,48 @@
+Para ejecutar:
+\Start up.
+Poner en marcha.
+\Clear the screen.
+Borrar la pantalla.
+\Use medium letters. 
+Usar letras medianas. 
+\Use the fat pen. [Face northwest.]
+Usar el bolígrafo gordo. [Hacia el noroeste.]
+\Loop.
+Lazo.
+\Pick an dark color.
+Elegir un color oscuro.
+\Start in the center of the screen.
+Comenzar en el centro de la pantalla.
+\Turn left 1/32 of the way.
+Girar izquierda 1/32.
+\Turn right.
+Girar derecha.
+\Move 2 inches.
+Correr 5 cm.
+\Turn left.
+Girar izquierda.
+\Write "Hola Mundo".
+Escribir "¡Hola che!".
+\Refresh the screen.
+Actualizar la pantalla.
+\Lighten the current color about 20 percent.
+Aligerar el color actual en 20 por ciento.
+\Add 1 to an count. 
+Agregar 1 a un conteo. 
+\If the count is 32, break.
+Si el conteo es 32, interrumpir.
+\Repeat.
+Repetir.
+\Wait for the escape key.
+Esperar la tecla escape.
+\Shut down.
+Apagar.
+
+Para girar izquierda un ratio:
+Turn left the ratio.
+
+Para correr una longitud:
+Mover la longitud.
+
+\To start in the center of the screen:
+\Start in the center of the screen's box.

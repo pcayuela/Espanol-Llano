@@ -4,11 +4,22 @@ Se revisó lo que llegó en `ejemplos.zip`, `examples.zip`, `sample.zip` y `the_
 
 ## Qué hay aquí
 
-| Carpeta | Qué es | Estado |
-|---|---|---|
-| [`sorteo/`](sorteo/) | Sorteo de lotería de 5 dígitos en la consola. Es el fuente de Pablo (traducción de un ejemplo en inglés de la Orden Osmosian). | Compila y corre con el parche `elegir`. Muestra `Generador de números de lotería`, cinco dígitos (por ejemplo `54384`) y `Presione la tecla Escape para salir`. |
-| [`desierto/`](desierto/) | Paisaje del desierto: cielo con degradé, sol, pájaros y arena con degradé. Reescrito a partir de `desierto.txt`. | Compila y corre con el parche `coord`. Captura en la carpeta. |
-| [`parches/`](parches/) | `aplicar-parches.py`: genera una copia parcheada de `(6) el seso` sin tocar el original. | Reproduce byte a byte la copia que se usó en las pruebas. |
+Todos compilan con `sal-1016.exe` y corren (bajo Wine). «Parche» indica qué copia de `el seso` hace falta (ver más abajo); «original» es el `(6) el seso` del repositorio sin tocar.
+
+| Carpeta | Qué es | `el seso` | Captura |
+|---|---|---|---|
+| [`sorteo/`](sorteo/) | Sorteo de lotería de 5 dígitos en la consola (fuente de Pablo, traducción de un ejemplo en inglés de la Orden Osmosian). | parche `elegir` | `sorteo/captura.png` |
+| [`desierto/`](desierto/) | Paisaje del desierto: cielo y arena con degradé, sol y pájaros. Reescrito a partir de `desierto.txt`. | parche `coord` | `desierto/captura.png` |
+| [`holamundo-espiral/`](holamundo-espiral/) | Tres variantes de la espiral de «Hola Mundo» (`testing_1`, `prueba_elender`, `prueba_elender2`; la última dice «¡Hola che!» y tiene los encabezados `Para girar izquierda …` y `Para correr …`). | original | una captura por variante |
+| [`euler/`](euler/) | Problema 1 de Project Euler (suma de múltiplos de 3 o 5 menores que 1000). Muestra `The answer is: 233168`, que es correcto. Mezcla español e inglés. | original | `euler/captura.png` |
+| [`arreglo/`](arreglo/) | Un arreglo de 100 números hecho con punteros (`principalvector`). Escribe los valores 1, 33 y 0 leídos del arreglo. | original | `arreglo/captura.png` |
+| [`fibonacci/`](fibonacci/) | Imprime la serie de Fibonacci en la consola. | original | `fibonacci/captura.png` |
+| [`triangle/`](triangle/) | Triángulo de Pascal dibujado con hexágonos. | parche `coord` | `triangle/captura.png` |
+| [`horizon/`](horizon/) | El paisaje del desierto en su versión original en inglés (`Hor`). | parche `coord` | `horizon/captura.png` |
+| [`fireworks/`](fireworks/) | Fuegos artificiales: al hacer clic en «FIREWORKS» del menú, aparecen estallidos sobre la silueta de una ciudad. | parche `coord` | `fireworks/captura.png` (después del clic) |
+| [`parches/`](parches/) | `aplicar-parches.py`: genera una copia parcheada de `(6) el seso` sin tocar el original. | | |
+
+**Procedencia.** `sorteo`, `desierto` y `holamundo-espiral` son de Pablo y su colaborador Elender. `euler`, `arreglo`, `fibonacci`, `triangle`, `horizon` y `fireworks` son ejemplos en inglés de la Orden Osmosian (Gerry Rzeppa) que Pablo reunió; se incluyen con el nombre del fuente original y un único cambio: la primera línea `To run:` pasó a `Para ejecutar:`, porque SAL exige esa rutina de entrada y sin ella dice `Necesito una rutina para 'ejecutar'`. Si hay alguna duda sobre la licencia de esos seis, conviene retirarlos.
 
 Cómo usarlo: `python3 parches/aplicar-parches.py "(6) el seso" "el seso parcheado" coord` (o `elegir`, o ninguna opción para los dos parches), y compilar con esa copia en lugar de la original. El `(6) el seso` del repositorio no se modificó.
 
@@ -37,8 +48,22 @@ El resultado es un programa mezclado, no totalmente en español: `el seso` no ti
 
 ## Qué había en los zip y qué no se agregó
 
-- **`ejemplos.zip`** (unos 160 fuentes de texto): programas de Pablo (`sorteo`, `simulator`, pruebas de `Hola Mundo`, la carpeta `Lizbeth`) y la carpeta `ucc2021`, con entregas de alumnos de dos cátedras. **No se publican las entregas de alumnos ni sus nombres.** Las que se miraron son mayormente traducciones de los ejemplos del manual (Sal Monet, el desierto, `pollock`, las cajas rellenas, el reloj, la ilusión óptica), no ideas nuevas. Hay también un `.csv` de una encuesta, que no se abrió ni se publica. Unas 90 copias de `el seso`: 68 son idénticas a la del repositorio y el resto son variantes retocadas a mano (por ejemplo con `x-coord`, o con encabezados mixtos, o una versión más antigua, SAL-1003).
-- **`examples.zip`**: casi todo es Plain English en inglés (Project Euler, primos, fuegos artificiales, `pollock`, un arreglo con punteros), además de los experimentos de Pablo con compiladores híbridos (`HAL`, `HAL2`, `HAL3`) y varios `.exe`. `nuevo euler` (una mezcla de español e inglés, código de Gerry) compiló con el `el seso` original y mostró `The answer is: 233168`, que es la respuesta correcta; no se agregó porque el código es de Gerry. Los `HAL` no se agregaron: son compiladores completos y requieren una decisión aparte.
-- **`sample.zip`**: es el Cal Monet en inglés (el original del que sale `guia/ejemplo-sal-monet/`), con su `.exe`. No se agregó. Usa Google Images, que ya no funciona (ver el README de ese ejemplo).
-- **`the_golden_key.zip`**: el `cal-4400` (compilador en inglés de la Orden Osmosian), un libro en PDF y un `bible.txt`. No es Español Llano y es material de terceros: no se agregó.
-- **Los `.exe` que venían en los zip no se ejecutaron.** Todo lo que se probó se compiló desde su fuente.
+Se probaron 33 fuentes de `examples.zip` y de `ejemplos.zip` (adaptados con `Para ejecutar`), con el `el seso` original y, si fallaban, con los parches: **9 compilaron y corrieron, 21 no compilaron y 3 eran duplicados exactos de otros.** Además se probaron aparte `sorteo` y `desierto`. Los que no compilan:
+
+| Programa | Error |
+|---|---|
+| `p7`, `p7G`, `p8`, `primes`, `primesgen`, `pg` (Project Euler, primos) | `No sé cómo 'Write [string] at/on the default console'`: usan la consola de la CAL, que SAL no define. |
+| `eulerGRZ`, `p2` | `No sé cómo 'Read [string]'`. |
+| `peuler`, `newP1euler` | `Creo que he visto este tipo 'top' en algún lugar previo; debe estar duplicado`: definen un tipo que ya existe en `el seso`. |
+| `pollock` | `No sé cómo 'convert [letter] in/into/to [string]'`. |
+| `preu` | `Ya sé cómo 'quit'`: redefine una rutina que ya existe. |
+| `E1`, `ej1-1`, `ej2-1`, `simple sentences`, `simulator`, `pruebo`, `Lizbeth/loteria` | Faltan rutinas auxiliares que en la versión completa están en el mismo archivo, o usan otro `el seso`. |
+| `pruebacastellano` | `No sé cómo 'Bip'`. |
+
+No se agregó:
+
+- **Entregas de alumnos (`ucc2021`, otras carpetas de `ejemplos.zip`).** No se publican ni sus programas ni sus nombres. Las que se miraron son mayormente traducciones de los ejemplos del manual. Hay también un `.csv` de una encuesta, que no se abrió.
+- **`HAL`, `HAL2`, `HAL3`** (compiladores híbridos de Pablo): requieren una decisión aparte.
+- **`sample.zip`**: es el Cal Monet en inglés (el original de `guia/ejemplo-sal-monet/`).
+- **`the_golden_key.zip`**: el `cal-4400` (compilador en inglés), un PDF y `bible.txt`; no es Español Llano.
+- **Los `.exe` de los zip no se ejecutaron.** Todo lo probado se compiló desde su fuente.
