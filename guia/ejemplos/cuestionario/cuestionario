@@ -1,0 +1,157 @@
+\ Cuestionario sobre Espanol Llano: 4 preguntas con tres opciones y puntaje.
+\ Cada boton A, B o C responde la pregunta actual; Reiniciar empieza de nuevo.
+Para ejecutar:
+Poner en marcha.
+Inicializar nuestras cosas.
+Manejar eventos.
+Finalizar nuestras cosas.
+Apagar.
+
+Para manejar eventos:
+Esperar un evento.
+Si el evento es nulo, salir.
+Manejar el evento.
+Repetir.
+
+Para manejar un evento:
+Si la clase del evento es "cursor", manejar el evento (cursor); salir.
+Si la clase del evento es "refrescar", manejar el evento (refrescar); salir.
+Si la clase del evento es "clic izquierdo", manejar el evento (clic izquierdo); salir.
+Si la clase del evento es "tecla abajo", manejar el evento (tecla abajo); salir.
+
+Para manejar un evento (cursor):
+Mostrar el cursor flecha.
+
+Para manejar un evento (refrescar):
+Mostrar todo.
+
+Para manejar un evento (tecla abajo):
+Si el evento está modificado, manejar el evento (atajo); salir.
+
+Para manejar un evento (atajo):
+Si la tecla del evento es la tecla-q, abandonar; salir.
+
+El fondo es una imagen.
+
+Para crear el fondo:
+Dibujar la caja de la pantalla con el color blanco y el color blanco.
+Extraer el fondo usando la caja de la pantalla.
+
+Para finalizar nuestras cosas:
+Destruir el fondo.
+
+El estado tiene una caja y una cadena.
+
+Para dibujar el estado:
+Dibujar la cadena del estado en la caja del estado (centrado).
+
+Para mostrar una cadena en el estado:
+Poner la cadena en la cadena del estado.
+Mostrar todo.
+
+Un botón tiene una caja y un nombre.
+
+Para hacer un botón usando un punto y un nombre:
+Poner la izquierda del punto menos el ancho del nombre en la izquierda del botón.
+Poner la superior del punto menos 5 mm en la superior del botón.
+Poner el punto en la inferior-derecha del botón.
+Poner el nombre en el nombre del botón.
+
+Para dibujar un botón:
+Dibujar el nombre del botón en la caja del botón (centrado).
+
+Para decidir si un punto está en un botón:
+Si el punto está en la caja del botón, diga sí.
+Diga no.
+
+Para manejar un evento (clic izquierdo):
+Si el foco del evento está en el botón abandonar, abandonar; salir.
+Si el foco del evento está en el botón reiniciar, empezar; salir.
+Si el foco del evento está en el botón alfa, responder usando 1; salir.
+Si el foco del evento está en el botón beta, responder usando 2; salir.
+Si el foco del evento está en el botón gama, responder usando 3; salir.
+
+La pregunta es un número.
+El puntaje es un número.
+La clave es un número.
+
+Para empezar:
+Poner 1 en la pregunta.
+Poner 0 en el puntaje.
+Mostrar "" en el comentario.
+Mostrar la pregunta.
+
+Para mostrar la pregunta:
+Si la pregunta es 1, mostrar "1) ¿Con qué palabra empieza una rutina?   A: Para   B: Rutina   C: Def" en el estado; poner 1 en la clave; salir.
+Si la pregunta es 2, mostrar "2) ¿Qué extensión llevan los archivos fuente?   A: .txt   B: ninguna   C: .sal" en el estado; poner 2 en la clave; salir.
+Si la pregunta es 3, mostrar "3) ¿Cuántos tipos primitivos hay?   A: 4   B: 8   C: 6" en el estado; poner 3 en la clave; salir.
+Si la pregunta es 4, mostrar "4) ¿Qué hace la palabra interrumpir?   A: Sale del lazo   B: Cierra el programa   C: Sale de la rutina" en el estado; poner 1 en la clave; salir.
+Mostrar "Fin del cuestionario. Tu puntaje: " luego el puntaje luego " de 4" en el estado.
+
+Para responder usando un número:
+Si la pregunta es 5, salir.
+Si el número es la clave, agregar 1 al puntaje; mostrar "¡Correcto!" en el comentario.
+Si el número no es la clave, mostrar "Incorrecto" en el comentario.
+Agregar 1 a la pregunta.
+Mostrar la pregunta.
+
+El comentario tiene una caja y una cadena.
+
+Para inicializar el comentario:
+Poner el centro de la pantalla en un punto.
+Poner el izquierda del punto menos 60 mm en la izquierda del comentario.
+Poner el izquierda del punto más 60 mm en la derecha del comentario.
+Poner la inferior de la pantalla menos 40 mm en la superior del comentario.
+Poner la inferior de la pantalla menos 35 mm en la inferior del comentario.
+
+Para dibujar el comentario:
+Dibujar la cadena del comentario en la caja del comentario (centrado).
+
+Para mostrar una cadena en el comentario:
+Poner la cadena en la cadena del comentario.
+Mostrar todo.
+
+Para inicializar el estado:
+Poner el centro de la pantalla en un punto.
+Poner el izquierda del punto menos 120 mm en la izquierda del estado.
+Poner el izquierda del punto más 120 mm en la derecha del estado.
+Poner la inferior de la pantalla menos 20 mm en la superior del estado.
+Poner la inferior de la pantalla menos 15 mm en la inferior del estado.
+
+El botón alfa es un botón.
+El botón beta es un botón.
+El botón gama es un botón.
+El botón reiniciar es un botón.
+El botón abandonar es un botón.
+
+Para inicializar los botones:
+Poner la inferior de la pantalla menos 15 mm en la superior de un punto.
+Poner la derecha de la pantalla menos 15 mm en la izquierda del punto.
+Hacer el botón abandonar usando el punto y "Abandonar".
+Poner la superior del botón abandonar menos 20 mm en la superior del punto.
+Hacer el botón reiniciar usando el punto y "Reiniciar".
+Poner la superior del botón reiniciar menos 20 mm en la superior del punto.
+Hacer el botón gama usando el punto y "C".
+Poner la superior del botón gama menos 20 mm en la superior del punto.
+Hacer el botón beta usando el punto y "B".
+Poner la superior del botón beta menos 20 mm en la superior del punto.
+Hacer el botón alfa usando el punto y "A".
+
+Para inicializar nuestras cosas:
+Crear el fondo.
+Inicializar el estado.
+Inicializar el comentario.
+Inicializar los botones.
+Empezar.
+
+Para mostrar todo:
+Esconder el cursor.
+Dibujar el fondo.
+Dibujar el estado.
+Dibujar el comentario.
+Dibujar el botón alfa.
+Dibujar el botón beta.
+Dibujar el botón gama.
+Dibujar el botón reiniciar.
+Dibujar el botón abandonar.
+Actualizar la pantalla.

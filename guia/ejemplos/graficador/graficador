@@ -1,0 +1,153 @@
+\ Graficador de rectas: marca dos puntos con el mouse y dibuja la recta que los une.
+\ Hay un boton para empezar de nuevo y otro para salir.
+Para ejecutar:
+Poner en marcha.
+Inicializar nuestras cosas.
+Manejar eventos.
+Finalizar nuestras cosas.
+Apagar.
+
+Para manejar eventos:
+Esperar un evento.
+Si el evento es nulo, salir.
+Manejar el evento.
+Repetir.
+
+Para manejar un evento:
+Si la clase del evento es "cursor", manejar el evento (cursor); salir.
+Si la clase del evento es "refrescar", manejar el evento (refrescar); salir.
+Si la clase del evento es "clic izquierdo", manejar el evento (clic izquierdo); salir.
+Si la clase del evento es "tecla abajo", manejar el evento (tecla abajo); salir.
+
+Para manejar un evento (cursor):
+Mostrar el cursor flecha.
+
+Para manejar un evento (refrescar):
+Mostrar todo.
+
+Para manejar un evento (tecla abajo):
+Si el evento está modificado, manejar el evento (atajo); salir.
+
+Para manejar un evento (atajo):
+Si la tecla del evento es la tecla-q, abandonar; salir.
+
+El fondo es una imagen.
+
+Para crear el fondo:
+Dibujar la caja de la pantalla con el color blanco y el color blanco.
+Extraer el fondo usando la caja de la pantalla.
+
+Para finalizar nuestras cosas:
+Destruir el fondo.
+
+El estado tiene una caja y una cadena.
+
+Para dibujar el estado:
+Dibujar la cadena del estado en la caja del estado (centrado).
+
+Para mostrar una cadena en el estado:
+Poner la cadena en la cadena del estado.
+Mostrar todo.
+
+Un botón tiene una caja y un nombre.
+
+Para hacer un botón usando un punto y un nombre:
+Poner la izquierda del punto menos el ancho del nombre en la izquierda del botón.
+Poner la superior del punto menos 5 mm en la superior del botón.
+Poner el punto en la inferior-derecha del botón.
+Poner el nombre en el nombre del botón.
+
+Para dibujar un botón:
+Dibujar el nombre del botón en la caja del botón (centrado).
+
+Para decidir si un punto está en un botón:
+Si el punto está en la caja del botón, diga sí.
+Diga no.
+
+Para manejar un evento (clic izquierdo):
+Si el foco del evento está en el botón abandonar, abandonar; salir.
+Si el foco del evento está en el botón borrar, borrar el gráfico; salir.
+Si el paso es 0, tomar el punto inicial; salir.
+Si el paso es 1, tomar el punto final; salir.
+
+El paso es un número.
+El punto inicial es un punto.
+El punto final es un punto.
+La recta es una línea.
+
+Para tomar el punto inicial:
+Poner el punto del mouse en el punto inicial.
+Poner 1 en el paso.
+Mostrar "Ahora marca el segundo punto" en el estado.
+
+Para tomar el punto final:
+Poner el punto del mouse en el punto final.
+Hacer la recta con el punto inicial y el punto final.
+Poner 2 en el paso.
+Mostrar "Listo. Usa Borrar para empezar de nuevo" en el estado.
+
+Para borrar el gráfico:
+Poner 0 en el paso.
+Mostrar "Marca dos puntos con el mouse" en el estado.
+
+El eje horizontal es una línea.
+El eje vertical es una línea.
+
+Para inicializar los ejes:
+Poner el centro de la pantalla en un punto pc.
+Hacer un punto x1 con la izquierda de la pantalla y la superior del punto pc.
+Hacer un punto x2 con la derecha de la pantalla y la superior del punto pc.
+Hacer el eje horizontal con el punto x2 y el punto x1.
+Hacer un punto y1 con la izquierda del punto pc y la superior de la pantalla.
+Hacer un punto y2 con la izquierda del punto pc y la inferior de la pantalla.
+Hacer el eje vertical con el punto y2 y el punto y1.
+
+Para marcar un punto:
+Elegir la superior-izquierda de una elipse usando 1 mm y el punto.
+Elegir la inferior-derecha de la elipse usando 1 mm y el punto.
+Dibujar la elipse con el color rojo y el color rojo.
+
+Para dibujar los ejes:
+Dibujar el eje horizontal usando el color gris.
+Dibujar el eje vertical usando el color gris.
+
+Para dibujar el gráfico:
+Si el paso es 0, salir.
+Marcar el punto inicial.
+Si el paso es 1, salir.
+Marcar el punto final.
+Dibujar la recta usando el color azul.
+
+Para inicializar el estado:
+Poner el centro de la pantalla en un punto.
+Poner el izquierda del punto menos 60 mm en la izquierda del estado.
+Poner el izquierda del punto más 60 mm en la derecha del estado.
+Poner la inferior de la pantalla menos 20 mm en la superior del estado.
+Poner la inferior de la pantalla menos 15 mm en la inferior del estado.
+
+El botón borrar es un botón.
+El botón abandonar es un botón.
+
+Para inicializar los botones:
+Poner la inferior de la pantalla menos 15 mm en la superior de un punto.
+Poner la derecha de la pantalla menos 15 mm en la izquierda del punto.
+Hacer el botón abandonar usando el punto y "Abandonar".
+Poner la izquierda del botón abandonar menos 15 mm en la izquierda del punto.
+Hacer el botón borrar usando el punto y "Borrar".
+
+Para inicializar nuestras cosas:
+Crear el fondo.
+Inicializar el estado.
+Inicializar los botones.
+Inicializar los ejes.
+Borrar el gráfico.
+
+Para mostrar todo:
+Esconder el cursor.
+Dibujar el fondo.
+Dibujar los ejes.
+Dibujar el gráfico.
+Dibujar el estado.
+Dibujar el botón borrar.
+Dibujar el botón abandonar.
+Actualizar la pantalla.

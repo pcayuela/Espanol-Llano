@@ -286,7 +286,14 @@ Lo que enseñaron los intentos que fallaron:
 
 - **Un nombre de tipo que ya existe en `el seso` da error.** Con `Un contador es un número.` SAL respondió «Creo que he visto este tipo 'contador' en algún lugar previo; debe estar duplicado», porque `el seso` ya define `contador`. Conviene buscar el nombre en `el seso` antes de usarlo.
 - **`Crear una X` solo existe para las «cosas»** (tipos dinámicos). Con un registro simple, SAL respondió «No sé cómo 'Crear [tarjeta]'», porque nadie definió una rutina `crear` para ese tipo.
+- **El artículo `un` / `una` dentro del nombre de una rutina crea un parámetro.** `Para sonar una nota usando …` dio «No puedo encontrar el tipo 'nota'». Se corrige con `Para sonar usando una frecuencia y un nombre:`.
+- **Los artículos no sirven como nombres.** `El botón a es un botón.` dio «¡Epa! Necesito un 'es' o un 'son' por ahí, pero todo lo que encontré fue 'a'». Hay que usar otro nombre (`alfa`).
+- **Para comparar dos números se escribe `es`, sin «igual a».** `Si el número es la clave, …`; con «igual a» SAL pide un decisor que no existe.
 - **Los mensajes de error aparecen en la barra superior**, en rojo, con el nombre del archivo, y se descartan con el botón «Bueno» o con ESC.
+
+### Más ejemplos
+
+En `guia/ejemplos/` hay cuatro programas nuevos y probados: una rueda de texto con la tortuga, un piano de teclado, un graficador de rectas y un cuestionario con puntaje. Su `README.md` explica de dónde salen las ideas, cómo compilarlos y qué se probó.
 
 ### Un programa completo: el Sal Monet
 

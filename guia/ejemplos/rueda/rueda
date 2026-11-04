@@ -1,0 +1,18 @@
+\ Rueda de palabras: escribe una palabra girando y aclarando el color en cada paso.
+\ Usa los comandos de tortuga de el seso: comenzar, girar, mover y escribir.
+Para ejecutar:
+Poner en marcha.
+Borrar la pantalla.
+Usar letras medianas. Usar el bolígrafo gordo.
+Elegir un color muy oscuro.
+Lazo.
+Comenzar en el centro de la pantalla.
+Girar 10 grados.
+Girar derecha. Mover 60 mm. Girar izquierda.
+Escribir "Espiral".
+Actualizar la pantalla.
+Aligerar el color actual en 15 por ciento.
+Agregar 1 a un contador. Si el contador es 36, interrumpir.
+Repetir.
+Esperar la tecla escape.
+Apagar.
