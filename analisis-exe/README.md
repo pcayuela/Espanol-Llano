@@ -67,6 +67,30 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 - No hay URLs, direcciones IP ni dominios incrustados en los strings. Tampoco claves de registro ni referencias a `cmd` o `powershell`.
 - Lo que importa y lo que llama corresponde a lo que describe el manual (entorno gráfico, editor, archivos, impresión, portapapeles y compilador).
 
+## Comparación de strings (fuente contra `.exe`)
+
+Se extrajeron los literales de texto de los seis archivos fuente (sin los comentarios) y se buscaron dentro del `.exe`.
+
+- **1.506** literales distintos de 4 o más caracteres.
+- **1.385 (92 %)** aparecen en el ejecutable.
+- **121** no aparecen: 114 en `(6) el seso`, 6 en `(3) el editor` y 1 en `(5) el compilador`. Ninguno en `(1)`, `(2)` ni `(4)`. La lista completa está en `ausentes.txt`.
+- En sentido inverso: de **458** cadenas de texto legible de la sección de datos del `.exe` (8 o más caracteres y 3 o más palabras), **0** carecen de coincidencia en la fuente. Es decir, ese texto está explicado por el código fuente. Quedan fuera del cotejo la fuente `osmosian` embebida y las tablas binarias.
+
+### Qué hay en la fuente y no llegó al ejecutable
+
+Los literales ausentes agrupan funciones que existen en la fuente pero que este ejecutable no incluye:
+
+- **HTTP:** WinHTTP (`WinHttpOpen`, `WinHttpConnect`, `WinHttpSendRequest`, `WinHttpReadData`) y WinInet (`InternetOpenA`, `InternetOpenUrlA`, `InternetReadFile`), con sus mensajes de error.
+- **Sockets:** `socket`, `connect`, `setsockopt`, `recv`, `closesocket`, `getaddrinfo`, `inet_ntoa`.
+- **Correo:** líneas de protocolo SMTP (`HELO`, `MAIL FROM:`, `RCPT TO:`, `DATA`, `Subject:`, `QUIT`).
+- **Cifrado:** `CryptAcquireContextA`, `CryptEncrypt`, `CryptDecrypt` y compañía, más los textos `Passphrase?`, `Encriptando...` y `Desencriptando...`.
+- **Consola y entorno CGI:** `AllocConsole`, `GetStdHandle`, `GetEnvironmentVariableA` y `CONTENT_LENGTH`.
+- **Otros:** `GetPixel`, `GetLocalTime`, `GetLastError`, `SetFilePointer`, `MessageBeep`.
+
+Esto coincide con el análisis de imports: en el `.exe` solo están `WSAStartup` y `WSACleanup` de la red, y no hay ninguna función de HTTP ni de `advapi32` (cifrado). La explicación más probable es que `el seso` funciona como biblioteca general y el compilador deja afuera el código que ningún programa alcanza. Es una hipótesis: no se verificó recompilando.
+
+Los 6 literales ausentes de `(3) el editor` y el de `(5) el compilador` no se analizaron uno por uno.
+
 ## Límites
 
 - **No prueba** que el `.exe` sea el resultado exacto de compilar estos seis archivos. Se cotejó una muestra de rutinas, no todo el ejecutable. Para saberlo habría que recompilar con SAL en Windows y comparar.
@@ -81,6 +105,8 @@ La fuente tiene una capa de red completa (`socket`, `connect`, `setsockopt`, `ge
 | `sal_annot.asm.gz` | Desensamblado de la sección de código (176.339 líneas), comprimido, con cada llamada a Windows rotulada. |
 | `imports.py` | Genera `iat.txt` a partir del `.exe`. |
 | `match.py` | Busca las rutinas solo-`Intel` de la fuente dentro del `.exe`. |
+| `strcmp.py` | Compara los literales de texto de la fuente con los strings del `.exe`. |
+| `ausentes.txt` | Los 121 literales de la fuente que no están en el `.exe`. |
 
 ## Cómo reproducirlo
 
@@ -99,6 +125,12 @@ objdump -D -b binary -mi386 --adjust-vma=0x400000 --start-address=0x420000 --sto
 ```
 
 Los desplazamientos de archivo coinciden con las direcciones relativas porque la alineación de sección y de archivo es la misma (`0x1000`).
+
+Para la comparación de strings (regenera `ausentes.txt`):
+
+```bash
+python3 -I analisis-exe/strcmp.py sal-1016.exe "(1) el escritorio" "(2) el administrador de archivos" "(3) el editor" "(4) el escriba" "(5) el compilador" "(6) el seso"
+```
 
 Para leer el desensamblado comprimido:
 

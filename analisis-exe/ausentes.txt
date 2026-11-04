@@ -1,0 +1,121 @@
+Passphrase?
+Passphrase cannot be blank.
+Desencriptando...
+En el portapapeles
+Encriptando...
+Extrayendo...
+flag
+SetFilePointer
+Error posicionando puntero de archivo.
+Error escribiendo archivo.
+MessageBeep
+Beep
+ColorRGBToHLS
+wininet.dll
+InternetCrackUrlA
+winhttp.dll
+WinHttpConnect
+No se pudo conectar.
+advapi32.dll
+CryptAcquireContextA
+Microsoft Enhanced Cryptographic Provider v1.0
+No se pudo adquirir el contexto.
+CryptCreateHash
+No se pudo crear el hash.
+CryptHashData
+No pude hacer hash de la contraseña.
+CryptDeriveKey
+No pude derivar la clave de sesión.
+WinHttpOpen
+No pude abrir la conexión.
+POST
+https
+WinHttpOpenRequest
+HTTP/1.1
+No pude abrir el pedido.
+socket
+No pude crear socket.
+connect
+No pude conectar al socket.
+setsockopt
+No pudo configurar el tiempo de espera de recepción.
+izquierda=
+, superior=
+, derecho=
+, inferior=
+matiz=
+, saturación=
+, luminosidad=
+nombre='
+, altura=
+numerador=
+, denominador=
+comienzo=
+ fin=
+, y=
+red=
+, green=
+, blue=
+CryptDecrypt
+Error desencriptando datos.
+localhost
+CryptDestroyKey
+CryptDestroyHash
+CryptReleaseContext
+closesocket
+WinHttpCloseHandle
+CryptEncrypt
+Error encriptando datos.
+GdipGetDC
+GdipReleaseDC
+FreeConsole
+GetEnvironmentVariableA
+No se pudo leer ws2_32.dll.
+getaddrinfo
+Lamento que estas rutinas solo funcionan en Windows XP o superior.
+freeaddrinfo
+GetPixel
+get a column# given a row...
+inet_ntoa
+invalid heading
+No pude resolver nombre de anfitrión (host) '
+ERROR
+AllocConsole
+GetStdHandle
+Directory '
+' doesn't exist.
+GetLocalTime
+GetLastError
+WSAGetLastError
+bible.txt
+Error leyendo archivo.
+WinHttpQueryDataAvailable
+No se pudo consultar los datos disponibles.
+WinHttpReadData
+Error leyendo datos.
+CONTENT_LENGTH
+Error obteniendo 'CONTENT_LENGTH'.
+Error leyendo datos 'stdin'.
+InternetOpenA
+No pude conectarme a internet.
+InternetOpenUrlA
+No pude conectarme a url '
+InternetCloseHandle
+InternetReadFile
+Error leyendo url '
+recv
+Error recibiendo datos.
+WinHttpReceiveResponse
+No pude enviar el pedido.
+Error enviando datos.
+WinHttpSendRequest
+HELO 
+MAIL FROM: <
+RCPT TO: <
+DATA
+From: 
+To: 
+Subject: 
+Reply-To: 
+QUIT
+GetClipRgn
