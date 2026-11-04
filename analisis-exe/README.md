@@ -143,14 +143,14 @@ Los créditos de esa fuente conviene tenerlos presentes si el repo se hace públ
 
 ### Una rutina de dibujo, línea por línea
 
-`To draw a spot with a color` (`(6) el seso`, línea 5015) dice:
+`To draw a spot with a color` (`(6) el seso`, línea 5014) dice:
 
 ```
 Convert the color to a colorref.
 Call "gdi32.dll" "SetPixelV" with the current canvas and the spot's x-coord and the spot's y-coord and the colorref.
 ```
 
-En el `.exe` es la rutina de `0x4A5BB0` a `0x4A5C17`, y se corresponde con la fuente paso a paso:
+En el `.exe` es la rutina de `0x4A5BAC` a `0x4A5C17`, y se corresponde con la fuente paso a paso:
 
 | Fuente | Código de máquina |
 |---|---|
