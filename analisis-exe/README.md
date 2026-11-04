@@ -147,13 +147,39 @@ Los créditos de esa fuente conviene tenerlos presentes si el repo se hace públ
 - Cargar una imagen desde memoria: `CreateStreamOnHGlobal` (`0x49BB0B`) y `GdipCreateBitmapFromStream` (`0x49BB2D`), en `create a gpbitmap given a buffer` (línea 2019). Las imágenes se leen de un buffer, no de la red.
 - Edición: `GdipCloneBitmapAreaI`, `GdipImageRotateFlip` (voltear, espejar y rotar), `GdipDrawImageRectRectI`, `GdipCreateBitmapFromScan0`, `GdipBitmapLockBits` y `GdipBitmapUnlockBits`, y `GdipSetImageAttributesColorMatrix` (escala de grises).
 
+### El «talker»: síntesis de voz
+
+`To initialize a talker` (`(6) el seso`, línea 8121) crea con `CoCreateInstance` el objeto `SpVoice` de la API de voz de Microsoft (SAPI): el identificador de clase `{96749377-3391-11D2-9EE3-00C04F797396}` y el de interfaz `{6C44DF74-72B9-4992-A1EC-EF996E0422D4}`. Las dos cadenas aparecen en el `.exe`. La rutina forma parte de `Start up`, así que el programa pide ese objeto al arrancar.
+
+En la fuente hay rutinas para usarlo (`To speak a string`, `To speak a string and wait`, `To wait until speaking is done`), que respetan la bandera `silent flag`. La palabra `speak` no aparece en los otros cinco archivos, y dentro de `el seso` solo se la menciona en esas rutinas. No se verificó si el ejecutable llega a enlazarlas, ni se probó la voz. `To finalize a talker` libera el objeto (`Call the talker's vtable's release`).
+
 ### Impresión
 
 `PrintDlgExA` (`0x4B49BB`, `initialize the printer canvas`), `StartDocA` (`0x494D40`), `StartPage` (`0x495358`), `ResetDCA` (`0x495156`), `EndPage` (`0x4A82C5`) y `EndDoc` (`0x4A6882`). Corresponden a `begin printing`, `begin a sheet`, `end a sheet` y `end printing`.
 
 ### Otros
 
-`CoInitializeEx` (`0x4B3CB7`) y `CoCreateInstance` (`0x4B4D47`) están en `initialize com` y `initialize a talker`. `CLSIDFromString` (`0x499ACC`) está en `convert a string to a uuid`. No se analizó para qué se usa el "talker".
+`CoInitializeEx` (`0x4B3CB7`) y `CoCreateInstance` (`0x4B4D47`) están en `initialize com` y `initialize a talker`. `CLSIDFromString` (`0x499ACC`) está en `convert a string to a uuid`. Para qué sirve el «talker», ver la sección siguiente.
+
+### Rutinas de `el seso` que no entran al ejecutable
+
+Los 114 literales ausentes de `el seso` pertenecen a **50 rutinas** (ninguna está enlazada: si lo estuviera, su texto estaría en el `.exe`). Agrupadas por función:
+
+| Grupo | Rutinas (línea en `el seso`) |
+|---|---|
+| **Sockets** (8) | `create a socket given a host string and a port number` (2199), `destroy a socket` (4262), `get an ip address given a host string` (6404), `get a sockaddr given a host string` (6600), `get some addrinfo routines` (6187), `receive a buffer from a socket` (11928), `send a buffer to a socket` (12901), `put the system's last winsock error into a number` (11475) |
+| **HTTP con WinHTTP** (7) | `create the open handle` (2092), `create the connect handle` (1898), `create the request handle` (2175), `send a data string` (12913), `receive the response` (11943), `read a response string` (11850), `destroy a winhttp request` (4273) |
+| **URL con WinInet** (2) | `convert a url to a url record` (1737), `read a url into a buffer` (11886) |
+| **Correo** (1) | `send an email` (12926): arma un diálogo SMTP (`HELO`, `MAIL FROM`, `RCPT TO`, `DATA`, `QUIT`) |
+| **Cifrado** (4) | `create a crypt session with a passphrase string` (1930), `encrypt a buffer given a passphrase string` (5250), `decrypt a buffer given a passphrase string` (4146), `destroy a crypt session` (4181) |
+| **CGI y consola** (4) | `initialize the cgi` (7644), `finalize the cgi` (5794), `find a value string given the environment variables and a name` (6035), `read stdin into a buffer` (11869) |
+| **Archivos** (5) | `open a file given a path` (9969), `read a file into a buffer` (11780), `write a buffer to a file` (16134), `append a buffer to a file` (221), `read the bible` (11736, lee un archivo `bible.txt`) |
+| **Depuración** (7) | `debug a box / a color / a font / a fraction / a line / a pair / a rgb` (2559 a 2647) |
+| **Gráficos y texto** (6) | `convert a colorref to a color` (1319), `get a color given a spot` (6277), `extract a picture given a box` (5651), `unmask outside an hrgn` (15831), `get a column# given a row and a spot and a text` (6281), `get a start width and a substring ...` (6631) |
+| **Sistema y sonido** (5) | `put the system's date/time into a date/time` (11460), `put the system's last error into a number` (11472), `beep` (380), `buzz` (774), `get a string from the stack` (6651) |
+| **Geometría** (1) | `get a rise and a run given a heading` (6488) |
+
+Esto confirma, con otra vía, lo ya visto: en el ejecutable no hay HTTP, sockets, correo ni cifrado. Los 7 literales sueltos de `(3) el editor` y `(5) el compilador` ya se explicaron antes (código comentado).
 
 ## Recompilación: el `.exe` se reproduce desde la fuente
 
@@ -169,6 +195,14 @@ Se compilaron los seis archivos fuente de `main` usando el propio `sal-1016.exe`
 | Recompilado | `6062457fe28683d994900459549e7b2c1ea98fc5618feef8e11dcdd64c575264` |
 
 `cmp` no encontró ninguna diferencia entre los dos archivos.
+
+**Repetirlo en Linux.** El procedimiento está automatizado en `recompilar-wine.sh` (en esta carpeta). Con Wine, Xvfb, xdotool e ImageMagick instalados:
+
+```bash
+bash analisis-exe/recompilar-wine.sh sal-1016.exe .
+```
+
+Maneja SAL con el ratón en una pantalla virtual, abre los seis archivos, elige **Ejecutar** y compara los hashes. En la prueba del 4 de noviembre de 2026 terminó con código 0 y «idénticos byte a byte». Es frágil: depende de las posiciones de pantalla. Para depurar, `KEEP=1` conserva el directorio de trabajo y las capturas.
 
 **Qué demuestra.** Compilar estos seis archivos con SAL produce exactamente el ejecutable del repo. Por lo tanto el `.exe` corresponde a esta fuente, y no hay código en el ejecutable que la fuente no explique. Es la prueba que faltaba para lo que en las secciones anteriores quedaba como hipótesis (por ejemplo, que el compilador deja afuera las rutinas que nadie usa: el resultado reproducido es el mismo programa).
 
@@ -290,6 +324,7 @@ Como contraste, `handle extract nibble literal`, cuya línea de despacho (699) *
 | `match.py` | Busca las rutinas solo-`Intel` de la fuente dentro del `.exe`. |
 | `strcmp.py` | Compara los literales de texto de la fuente con los strings del `.exe`. |
 | `ausentes.txt` | Los 121 literales de la fuente que no están en el `.exe`. |
+| `recompilar-wine.sh` | Recompila los fuentes con `sal-1016.exe` bajo Wine y compara el resultado. |
 
 ## Cómo reproducirlo
 
