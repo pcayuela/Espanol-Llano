@@ -1,0 +1,89 @@
+Para ejecutar:
+poner en marcha.
+
+Una celda es una cosa con una caja y un número.
+El triángulo son algunas celdas.
+El recuento de filas es 10.
+
+Para crear el triangulo:
+Crea el triángulo.
+Dibuja el triángulo.
+Actualiza la pantalla.
+Espere la tecla de escape.
+Destruye el triángulo.
+cerrar.
+
+Para dibujar una caja (estilo hexagonal):
+Crea un polígono.
+Agrega la parte superior central del cuadro al polígono.
+Coloque el centro derecho de la caja en un lugar.
+Mueva la mancha hacia arriba 1/12 de pulgada. Agrega el lugar al polígono.
+Mueva la mancha hacia abajo 1/6 de pulgada. Agrega el lugar al polígono.
+Agrega la parte inferior central del cuadro al polígono.
+Coloque el centro izquierdo de la caja en el lugar.
+Mueva la mancha hacia abajo 1/12 de pulgada. Agrega el lugar al polígono.
+Mueva la mancha hacia arriba 1/6 de pulgada. Agrega el lugar al polígono.
+Agrega la parte superior central del cuadro al polígono.
+Delinea el polígono con el bolígrafo negro.
+Destruye el polígono.
+
+Para crear algunas celdas:
+Coloque el centro de la pantalla en un lugar.
+Mueva el punto hacia arriba 1/3 de pulgada por el recuento de filas dividido por 2.
+Pon 1 en una fila.
+loop.
+Crea una fila con el lugar y el número de fila.
+Si el número de fila es el recuento de filas, interrumpir.
+Agregue 1 a la fila.
+Privatizar el número de fila.
+Haga una caja de 1/2 pulgada por 1/2 pulgada.
+Centre la caja en el lugar.
+Mueva el cuadro a la izquierda 1/4 de pulgada por el número de fila menos 1/4 de pulgada.
+Mueva el cuadro hacia abajo 1/3 de pulgada por el número de fila menos 1/3 de pulgada.
+loop.
+Asignar memoria para una celda. Agrega la celda al triángulo.
+Pon la caja en la caja de la celda.
+Obtenga un número para el celular.
+Mueva la caja a la derecha 1/2 pulgada.
+Reste 1 de la fila.
+Si el número de fila es mayor que 0.
+Repetir. 
+
+Para dibujar  celdas:
+Círculo.
+Obtén una celda del triángulo. Si la celda es nula, rómpala.
+Dibuja la caja de la celda (estilo hexagonal).
+Dibuja el número de la celda en el cuadro de la celda.
+Repetir.
+
+Para obtener un número para una celda:
+Si la celda es la primera del triángulo, ponga 1 en el número de la celda; Salida.
+Encuentra una celda de la izquierda dada la parte superior izquierda de la celda.
+Si la celda de la izquierda es nula, ponga 1 en el número.
+Si la celda de la izquierda no es nula, ponga el número de la celda de la izquierda en el número.
+Encuentra una celda de la derecha dada la parte superior derecha de la celda.
+Si la celda de la derecha no es nula, agregue el número de la celda de la derecha en el número.
+Ponga el número en el número de la celda.
+
+Para encontrar una celda:
+Vacía la celda.
+loop.
+Obtén la celda del triángulo.
+Si la celda es nula, salga.
+Si el lugar está en la casilla de la celda, sal.
+Repetir.
+
+Para mostrar todo:
+Esconder el cursor.
+Dibujar las celdas.
+dibujar el triangulo.
+Actualizar la pantalla.
+
+
+Para finalizar nuestras cosas:
+destruir celdas.
+destruir triangulos.
+Esperar la tecla escape.
+Apagar.
+
+

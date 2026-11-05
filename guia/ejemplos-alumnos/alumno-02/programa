@@ -1,0 +1,40 @@
+para ejecutar:
+poner en marcha.
+clear the screen using the tan color.
+Make a box 2 inches by 2 inches.
+Center the box on the screen. 
+
+
+Fill and label the box with random spots stopping at 100.
+Move the box right 2-1/2 inches.
+Fill and label the box with random spots stopping at 1000.
+Move the box right 2-1/2 inches.
+Fill and label the box with random spots stopping at 10000.
+Move the box right 2-1/2 inches.
+Fill and label the box with random spots stopping at 100000.
+Move the box right 2-1/2 inches.
+Fill and label the box with random spots stopping at 1000000.
+actualizar la pantalla.
+esperar la tecla escape.
+apagar.
+
+
+To clear the screen with the tan color:
+Unmask everything.
+Draw the screen's box with the tan color.
+Refresh the screen.
+Put the screen's box into the context's box.
+
+
+To fill and label a box with random spots stopping at a number:
+privatizar the number.
+Draw the box with the brown pen.
+Lazo.
+Pick a spot anywhere in the box.
+Draw the spot with the brown pen.
+If a counter is past the number, break.
+Repetir.
+actualizar la pantalla.
+
+
+

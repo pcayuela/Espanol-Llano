@@ -1,0 +1,18 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras grandes. Usar el bolígrafo gordo.
+Elegir un color claro.
+Lazo.
+Comenzar en el centro de la pantalla.
+Write "12 1 2 3 4 5 6 7 8 9 10 11 "
+about 3 inches from the screen's center.
+Move to the center of the screen's box.
+Draw a line between 2 inch and 2 inches long.
+Girar 1 izquierda .
+Actualizar la pantalla.
+Aligerar el color actual en 20 porcentaje .
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.\
+Borrar la pantalla.
+Repetir.
+Esperar la tecla escape.
+Apagar.

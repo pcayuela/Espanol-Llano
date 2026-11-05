@@ -1,0 +1,42 @@
+para ejecutar:
+poner en marcha.
+
+
+borrar la pantalla al tan color.
+hacer una caja 2 inches por 2 inches.
+center la caja on the screen.
+
+Llenar y nombrar la caja con spots aleatorios hasta 100.
+\Llenar y nombrar la caja con spots aleatorios hasta 100.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  1000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  10000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  100000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  1000000.
+actualizar la pantalla.
+esperar la tecla escape.
+apagar.
+
+
+Para llenar y nombrar a box con spots aleatorios hasta un número:
+
+Privatizar el número.
+Draw the box with the brown pen.
+\Dibujar la caja con el bolígrafo marrón.
+Lazo.
+Pick a spot anywhere in the box.
+Draw the spot with the brown pen.
+\Dibujar un punto con el color marrón.
+\If a counter is past the number, break.
+Si un contador supera el número, interrumpir.
+Repetir.
+actualizar la pantalla.
+
+para borrar la pantalla al tan color:
+unmask everything.
+Draw the screen's box with the tan color.
+actualizar la pantalla.
+Put the screen's box into the context's box.

@@ -1,0 +1,47 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras medianas. Usar un bolígrafo. 
+Dibujar circulo grande.
+Dibujar letras.  
+Dibujar sonrisa.
+Dibujar nariz.
+Actualizar la pantalla.
+esperar la tecla escape.
+Apagar.
+
+Para Dibujar circulo grande:
+Lazo.
+Comenzar en el centro de la pantalla.
+write"<><><><><>" about 2-1/2 inches from the screen's center.
+Girar 1 derecha.
+Actualizar la pantalla.
+Aligerar el color actual en 50 porcentaje .
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Draw a line between 1 inch and 1 inches long. 
+Actualizar la pantalla. 
+Repeat.
+
+
+Para dibujar letras:
+Lazo.
+Comenzar en el centro de la pantalla.
+write "            **         " about 1 inch from the screen's center.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 500, interrumpir.
+Repeat.
+
+Para dibujar sonrisa:
+lazo.
+comenzar en el centro de la pantalla.
+write " *  *" about 1-1/2 inches from the screen's center.
+actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+repeat.
+
+Para dibujar nariz:
+lazo.
+comenzar en el centro de la pantalla.
+write "#" about 1/40 inches from the screen's center.
+actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+repeat.

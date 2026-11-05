@@ -1,0 +1,15 @@
+Para ejecutar:
+poner en marcha.
+borrar la pantalla.
+Usar letras medianas. 
+Elegir un color negro.
+lazo.
+Comenzar en el centro de la pantalla.
+Turn left 1/32 of the way.
+Escribir "HOLA MUNDO".
+Actualizar la pantalla.
+aligerar el color actual en 20 porcentaje.
+Agregar 1 a un contador. Si el contador es 32, interrumpir.
+Repetir.
+Esperar la tecla escape.
+Apagar.

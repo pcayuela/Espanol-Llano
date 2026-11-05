@@ -1,0 +1,33 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras medianas. Usar el bolígrafo gordo.
+
+Write "- U C C - 2021 -  ING DE SISTEMAS " about 13/2 cm from the screen's center.
+Write "Alumno " about 11/3 cm from the screen's center.
+Elegir un color muy claro.
+
+Lazo.
+Comenzar en el centro de la pantalla.
+move to the middle of the screen's box.
+draw a line 3 cm long.
+Girar derecha. Mover 10 cm. Girar Izquierda.
+Actualizar la pantalla.
+
+Comenzar en el centro de la pantalla.
+move to the middle of the screen's box.
+Write "| | " about 5 cm from the screen's center.
+Girar derecha. Mover 3 cm. Girar Izquierda.
+Actualizar la pantalla.
+
+Comenzar en el centro de la pantalla.
+Girar 10 izquierda.
+Girar derecha. Mover 3 cm. Girar izquierda.
+Write "* " about 16/2 cm from the screen's center.
+Actualizar la pantalla.
+
+Agregar 1 a un contador. Si el contador es 400, interrumpir.
+Repetir.
+
+Esperar la tecla escape.
+Apagar.
+

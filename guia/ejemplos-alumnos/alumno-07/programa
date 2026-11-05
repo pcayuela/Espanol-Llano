@@ -1,0 +1,23 @@
+Para ejecutar:
+poner en marcha. 
+escribir "Generador de numeros para sorteo" en la consola.
+Agregar 1 a un contador. Si el contador es 20, interrumpir. 
+repetir.
+sembrar el generador de números aleatorios.
+lazo.
+
+elegir un número.
+escribir el número en la consola sin avanzar. 
+
+
+saltar una línea.
+escribir "Presione la tecla escape para salir" en la consola.
+esperar la tecla escape.
+Apagar.
+
+Para escribir un número en la consola sin avanzar:
+Convertir el número en una cadena.
+Escribir la cadena en la consola sin avanzar.
+
+Para saltar una línea:
+Escribir "" en la consola.

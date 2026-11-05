@@ -1,0 +1,22 @@
+Para ejecutar:
+poner en marcha. 
+
+Actualizar la pantalla.
+Usar letras medianas.Usar el bolígrafo gordo.
+Usar el color naranja.
+Lazo.
+Comenzar en el centro de la pantalla.
+Girar izquierda.
+Girar derecha. Mover 25 mm. Girar izquierda.
+Escribir "Buen dia gente".
+Actualizar la pantalla.
+Aligerar el color actual en 40 porcentaje.
+Comenzar en el centro de la pantalla.
+Move to the center of the screen's box.
+Write "[]" about 5 mm from the screen's center.
+ Girar derecha. Mover 4 mm. Girar izquierda.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 10, interrumpir.
+Repetir.
+Esperar la tecla escape.
+Apagar.

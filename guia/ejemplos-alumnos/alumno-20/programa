@@ -1,0 +1,73 @@
+para ejecutar:
+poner en marcha.
+
+
+borrar la pantalla al color naranja.
+hacer una caja 5 cm por 5 cm.
+center la caja on the screen.
+mover la caja hacia la derecha 2-1/2 cm.
+
+Llenar y nombrar la caja con spots aleatorios hasta 100.
+\Llenar y nombrar la caja con spots aleatorios hasta 100.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  1000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  10000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  100000.
+ mover  la caja  hacia la derecha 2-1/2 inches.
+Llenar y nombrar la caja con spots aleatorios hasta  1000000.
+actualizar la pantalla.
+esperar la tecla escape.
+apagar.
+
+
+Para llenar y nombrar a box con spots aleatorios hasta un número;
+To fill and label a box with random spots stopping at un número:
+\Privatize the number.
+Privatizar el número.
+Draw the box with the brown pen.
+\Dibujar la caja con el bolígrafo marrón.
+Lazo.
+Pick a spot anywhere in the box.
+\Elegir un spot en cualquier lugar en the box;
+Draw the spot with the brown pen.
+\Dibujar un punto con el color marrón.
+\If a counter is past the number, break.
+Si un contador supera el número, interrumpir.
+Repetir.
+Escribir el número.
+\Write the number under the box.
+\Escribir el número bajo la caja.
+\Refresh the screen.
+actualizar la pantalla.
+
+\el bolígrafo marrón es un bolígrafo.
+\To fill and label the box with random spots stopping at a number:
+\Privatize the number.
+\dibujar la caja con el color marron y el color marron.
+\Lazo.
+
+\para  mover  la caja  hacia la derecha algunos inches :
+\mover  la caja  hacia la derecha 2-1/2 inches.
+
+
+
+
+
+\to dibujar la caja  con el color marron y el color marron:
+\dibujar la caja con el color marron y el color marron.
+
+
+
+\elegir un punto en cualquier lugar en una caja.
+\dibujar el punto con el color marron.
+\If a counter is past a number, break.
+\repetir.
+\actualizar la pantalla.
+
+\para dibujar el punto con el color marron:
+\dibujar el punto con el color marron.
+
+\apagar.
+

@@ -62,7 +62,7 @@ Se probaron 33 fuentes de `examples.zip` y de `ejemplos.zip` (adaptados con `Par
 
 No se agregó:
 
-- **Entregas de alumnos (`ucc2021`, otras carpetas de `ejemplos.zip`).** No se publican ni sus programas ni sus nombres. Las que se miraron son mayormente traducciones de los ejemplos del manual. Hay también un `.csv` de una encuesta, que no se abrió.
+- **Entregas de alumnos (`ucc2021` y otras carpetas de `ejemplos.zip`).** Los programas que compilan y corren están en [`../ejemplos-alumnos/`](../ejemplos-alumnos/), anonimizados y numerados al azar. Hay también un `.csv` de una encuesta, que no se abrió ni se publica.
 - **`HAL`, `HAL2`, `HAL3`** (compiladores híbridos de Pablo): requieren una decisión aparte.
 - **`sample.zip`**: es el Cal Monet en inglés (el original de `guia/ejemplo-sal-monet/`).
 - **`the_golden_key.zip`**: el `cal-4400` (compilador en inglés), un PDF y `bible.txt`; no es Español Llano.

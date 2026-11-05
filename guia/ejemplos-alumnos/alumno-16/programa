@@ -1,0 +1,18 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras grandes. Usar el bolígrafo gordo.
+Elegir un color claro.
+Write "12 1 2 3 4 5 6 7 8 9 10 11 "
+about 3 inches from the screen's center.
+Dibujar manos.
+Esperar la tecla escape.
+Apagar.
+
+Para Dibujar manos:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 2 inch and 2 inches long.
+Girar 1 derecha.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Repeat.

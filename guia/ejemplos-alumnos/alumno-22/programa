@@ -1,0 +1,54 @@
+Para ejecutar:
+Poner en marcha.
+Dibujar el paisaje.
+Esperar la tecla escape.
+Apagar.
+
+Para dibujar el paisaje:
+Borrar la pantalla.
+Dibujar el cielo.
+Dibujar el sol.
+Dibujar los pájaros.
+Dibujar la arena.
+ 
+Para dibujar el cielo:
+Use the lightest sky blue pen.
+Imagine a line across the middle of the screen's box.
+Lazo.
+Draw the line.
+Actualizar la pantalla.
+Darken the current color about 3 percent.
+Move the line up 1 pixel.
+If the line is above the screen's box's top, break.
+Repetir.
+ 
+Para dibujar el sol:
+Pick a spot anywhere in the top middle 1/4 of the screen's box.
+Make a dot between 1/4 inch and 1 inch wide.
+Center the dot on the spot.
+Draw the dot with the lightest yellow color.
+ 
+Para dibujar los pájaros:
+Pick a spot in the screen's box about 1 inch above the middle.
+Use the black pen.
+Lazo.
+Move to the spot.
+Face east.
+Pick a width between 1/8 inch and 1/4 inch.
+Draw a quarter circle given the width.
+Turn around.
+Draw another quarter circle given the width.
+Move the spot about 1/2 inch in any direction.
+Agregar 1 a un contador. Si el contador es 3, interrumpir.
+Repetir.
+ 
+Para dibujar la arena:
+Use the lightest orange pen.
+Imagine a line across the middle of the screen's box.
+Lazo.
+Draw the line.
+Actualizar la pantalla.
+Darken the current color about 3 percent.
+Move the line down 1 pixel.
+If the line is below the screen's box's bottom, break.
+Repetir.

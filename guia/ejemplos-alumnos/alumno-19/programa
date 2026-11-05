@@ -1,0 +1,35 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras grandes. Usar el bolígrafo gordo.
+Elegir un color claro.
+Write "12 .... 1 .... 2 .... 3 .... 4 .... 5 .... 6 .... 7 .... 8 .... 9 .... 10 .... 11 .... "
+about 3 inches from the screen's center.
+Dibujar segundos.
+Esperar la tecla escape.
+Apagar.
+
+Para Dibujar segundos:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 2 inch and 2 inches long.
+draw the line with the red color.
+Girar 6 derecha.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 830, interrumpir.
+Si el contador es divisible en 60, dibujar minutos.
+esperar 10 milisegundos.\esta en milisegundos para no perder tanto tiempo
+Clear the line's start.\no se como hacer para borrar las lineas
+Clear the line's end.\o se como hacer para borrar las lineas
+Repetir.
+
+Para Dibujar minutos:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 14/5 inch and 14/5 inches long.
+draw the line with the blue color.
+Girar 30 derecha.
+Actualizar la pantalla.
+Si un contador supera 0, interrumpir.
+Clear the line's start.\o se como hacer para borrar las lineas
+Clear the line's end.\o se como hacer para borrar las lineas
+Repetir.

@@ -1,0 +1,50 @@
+Para ejecutar:
+Poner en marcha.
+Usar letras medianas. Usar un bolígrafo. 
+dibujar Externo EYES.
+dibujar blanco.
+dibujar blanco dos.
+elegir un color claro.
+Dibujar EYES.
+Esperar la tecla escape.
+Apagar.
+
+Para Dibujar EYES:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 1 inch and 1 inches long.
+Girar 1 derecha.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Repeat.
+
+Para dibujar Externo EYES:
+Lazo. 
+Comenzar en el centro de la pantalla.
+write"////////" about 3-1/2  inches from the screen's center. 
+write"\\\\\\\\" about 3 inches from the screen's center. 
+write"|||||||||||" about 1 inches from the screen's center.
+Girar 1 derecha.
+Actualizar la pantalla.
+Aligerar el color actual en 50 porcentaje .
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Repetir.
+
+
+Para dibujar blanco:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 3 inch and 3 inches long.
+Girar 1 derecha.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Repeat.
+
+Para dibujar blanco dos:
+Lazo.
+Move to the center of the screen's box.
+Draw a line between 3 inch and 3 inches long.
+Girar 1 derecha.
+Actualizar la pantalla.
+Agregar 1 a un contador. Si el contador es 1000, interrumpir.
+Repeat.
